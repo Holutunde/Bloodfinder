@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarnpkg install
+  /usr/local/bin/node /usr/local/bin/yarn add react-redux
 
 PATH: 
   /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/reselect/-/reselect-4.1.5.tgz: ETIMEDOUT
+  Error: https://registry.yarnpkg.com/expo: ETIMEDOUT
       at Timeout._onTimeout (/usr/local/lib/node_modules/yarn/lib/cli.js:141423:19)
       at listOnTimeout (internal/timers.js:557:17)
       at processTimers (internal/timers.js:500:7)
