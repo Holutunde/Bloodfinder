@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { Text as NativeText } from 'react-native'
-import { ThemeContext } from '../Util/ThemeContext'
 
 const fontSize = 14
 const styles = {
@@ -8,12 +7,11 @@ const styles = {
 }
 
 const Text = ({ style = {}, children, ...props }) => {
-  const { theme } = useContext(ThemeContext)
   return (
     <NativeText
       style={{
-        fontFamily: 'UbuntuRegular',
-        color: theme === 'light' ? '#393A4A' : '#fff',
+        fontFamily: 'DMSansRegular',
+        color: 'white',
         lineHeight: (style?.fontSize ?? fontSize) * 1.5,
         ...styles,
         ...style,
@@ -28,12 +26,11 @@ const Text = ({ style = {}, children, ...props }) => {
 export default Text
 
 export const BoldText = ({ style = {}, children, ...props }) => {
-  const { theme } = useContext(ThemeContext)
   return (
     <NativeText
       style={{
-        fontFamily: 'UbuntuMedium',
-        color: theme === 'light' ? '#393A4A' : '#fff',
+        fontFamily: 'DMSansMedium',
+        color: 'white',
         lineHeight: (style?.fontSize ?? fontSize) * 1.5,
         ...styles,
         ...style,
@@ -49,7 +46,7 @@ export const VeryBoldText = ({ style = {}, children, ...props }) => {
   return (
     <NativeText
       style={{
-        fontFamily: 'UbuntuBold',
+        fontFamily: 'DMSansBold',
         lineHeight: (style?.fontSize ?? fontSize) * 1.5,
         color: theme === 'light' ? '#393A4A' : '#fff',
         ...styles,
