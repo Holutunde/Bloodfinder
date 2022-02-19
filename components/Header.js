@@ -2,7 +2,6 @@ import React from 'react'
 import { View, TouchableOpacity } from 'react-native'
 import SvgUri from 'expo-svg-uri'
 import { BoldText } from './Text'
-import { withNavigation } from 'react-navigation'
 
 const Header = ({
   onBackPress = null,
@@ -34,7 +33,7 @@ const Header = ({
   )
 }
 
-export default withNavigation(Header)
+export default Header
 
 export const SingleHeader = ({
   navigation,
@@ -52,7 +51,7 @@ export const SingleHeader = ({
       }}
       {...props}
     >
-      <BoldText style={{ fontSize: 20 }}>{children}</BoldText>
+      <BoldText style={{ fontSize: 40 }}>{children}</BoldText>
     </View>
   )
 }

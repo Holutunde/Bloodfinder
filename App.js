@@ -1,6 +1,10 @@
 import { StatusBar } from 'expo-status-bar'
 import React from 'react'
+import { useFonts } from 'expo-font'
 import { StyleSheet, Text, View } from 'react-native'
+import { NavigationContainer } from '@react-navigation/native'
+import AuthStack from './Navigation/AuthStack'
+import Login from './screens/Login'
 
 const customFonts = {
   DMSansRegular: require('./assets/fonts/DMSans-Regular.ttf'),
@@ -11,12 +15,11 @@ const customFonts = {
   DMSansItalic: require('./assets/fonts/DMSans-Italic.ttf'),
 }
 const App = () => {
+  const [fontsLoaded] = useFonts(customFonts)
   return (
-    <View style={styles.container}>
-
-      <View style={styles.container}>{fontsLoaded && <Navigation />}</View>
-
-    </View>
+    <NavigationContainer>
+      <AuthStack />
+    </NavigationContainer>
   )
 }
 
