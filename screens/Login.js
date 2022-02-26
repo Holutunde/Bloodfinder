@@ -12,6 +12,8 @@ import {
 import React, { useState } from 'react'
 import { SingleHeader } from '../components/Header'
 import Toptext from '../components/Toptext'
+import { FontAwesome5 } from '@expo/vector-icons'
+import { TouchableHighlight } from 'react-native-web'
 
 const Login = () => {
   const [loading, setLoading] = useState(false)
@@ -46,13 +48,13 @@ const Login = () => {
       >
         <View style={styles.toptext}>
           <Toptext />
-          <Text>yguyg</Text>
         </View>
         <View style={styles.form}>
           <View style={styles.action}>
             <TextInput
               onFocus={() => setFocused(true)}
               placeholder="Email"
+              placeholderTextColor="#fff"
               style={styles.textInput}
               autoCapitalize="none"
               onChangeText={(email) => handleInput({ email })}
@@ -60,8 +62,9 @@ const Login = () => {
           </View>
           <View style={styles.action}>
             <TextInput
-              placeholder="********"
+              placeholder="password"
               secureTextEntry={loginData.secureTextEntry ? true : false}
+              placeholderTextColor="#FFFFFF"
               style={styles.textInput}
               autoCapitalize="none"
               onChangeText={(password) => handleInput({ password })}
@@ -70,7 +73,7 @@ const Login = () => {
           <TouchableOpacity style={styles.pascont}>
             <Text style={styles.pas}>Forgot Password?</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.butcont}>
+          <TouchableOpacity activeOpacity={0.5} style={styles.butcont}>
             <Text style={styles.buttext}>SIGN IN</Text>
           </TouchableOpacity>
           <View style={styles.lncont}>
@@ -79,6 +82,13 @@ const Login = () => {
             <View style={styles.rightln}></View>
           </View>
           <View style={styles.iconcont}></View>
+        </View>
+        <View style={styles.smlinks}>
+          <TouchableOpacity>
+            <FontAwesome5 name="twitter-square" size={34} color="#1C7ED6" />
+          </TouchableOpacity>
+          <FontAwesome5 name="facebook-square" size={34} color="#0E17ED" />
+          <FontAwesome5 name="instagram-square" size={34} color="#D33A39" />
         </View>
       </KeyboardAvoidingView>
     </View>
@@ -106,7 +116,34 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   textInput: {
-    color: '#ffffff',
+    color: '#5E6A75',
     paddingLeft: 15,
+  },
+  pascont: {
+    alignItems: 'center',
+  },
+  pas: {
+    color: '#FFFFFF',
+    fontSize: 15,
+    fontWeight: '400',
+  },
+  butcont: {
+    borderWidth: 1,
+    borderColor: '#FFFFFF',
+    borderRadius: 30,
+    backgroundColor: '#D33A39',
+    justifyContent: 'center',
+    margin: 30,
+    height: 58,
+    width: '80%',
+  },
+  buttext: {
+    color: '#FFFFFF',
+    textAlign: 'center',
+  },
+  smlinks: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginHorizontal: 40,
   },
 })
