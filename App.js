@@ -17,19 +17,12 @@ const customFonts = {
 const App = () => {
   const [fontsLoaded] = useFonts(customFonts)
   return (
-    <NavigationContainer>
-      <AuthStack />
-    </NavigationContainer>
+    <NavigationContainer>{fontsLoaded && <AuthStack />}</NavigationContainer>
   )
 }
 
 export default App
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  container: {},
 })
