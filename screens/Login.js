@@ -1,95 +1,113 @@
 import {
   View,
   Text,
-  TextInput,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   TouchableOpacity,
   ScrollView,
+  Keyboard,
   Platform,
   StyleSheet,
 } from 'react-native'
 import React, { useState } from 'react'
 import { SingleHeader } from '../components/Header'
 import Toptext from '../components/Toptext'
+import NormalText, { BoldText } from '../components/Text'
+import Input from '../components/Input'
 import { FontAwesome5 } from '@expo/vector-icons'
-import { TouchableHighlight } from 'react-native-web'
 
 const Login = () => {
-  const [loading, setLoading] = useState(false)
-  const [isFocused, setFocused] = useState(false)
-
-  const [loginData, setLoginData] = useState({
-    email: ' ',
-    password: ' ',
+  const [data, setData] = useState({
+    email: '',
+    password: '',
     check_textInputChange: false,
     secureTextEntry: true,
   })
 
   const handleInput = (value) => {
-    setLoginData({
-      ...loginData,
+    setData({
+      ...data,
       ...value,
       check_textInputChange: true,
     })
   }
 
-  const updateSecureTextEntry = () => {
-    setLoginData({
-      ...loginData,
-      secureTextEntry: !loginData.secureTextEntry,
-    })
-  }
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === 'ios' ? 'padding' : null}
       >
-        <View style={styles.toptext}>
-          <Toptext />
-        </View>
-        <View style={styles.form}>
-          <View style={styles.action}>
-            <TextInput
-              onFocus={() => setFocused(true)}
-              placeholder="Email"
-              placeholderTextColor="#fff"
-              style={styles.textInput}
-              autoCapitalize="none"
-              onChangeText={(email) => handleInput({ email })}
-            />
-          </View>
-          <View style={styles.action}>
-            <TextInput
-              placeholder="password"
-              secureTextEntry={loginData.secureTextEntry ? true : false}
-              placeholderTextColor="#FFFFFF"
-              style={styles.textInput}
-              autoCapitalize="none"
-              onChangeText={(password) => handleInput({ password })}
-            />
-          </View>
-          <TouchableOpacity style={styles.pascont}>
-            <Text style={styles.pas}>Forgot Password?</Text>
-          </TouchableOpacity>
-          <TouchableOpacity activeOpacity={0.5} style={styles.butcont}>
-            <Text style={styles.buttext}>SIGN IN</Text>
-          </TouchableOpacity>
-          <View style={styles.lncont}>
-            <View style={styles.leftln}></View>
-            <Text style={styles.lntext}>OR</Text>
-            <View style={styles.rightln}></View>
-          </View>
-          <View style={styles.iconcont}></View>
-        </View>
-        <View style={styles.smlinks}>
-          <TouchableOpacity>
-            <FontAwesome5 name="twitter-square" size={34} color="#1C7ED6" />
-          </TouchableOpacity>
-          <FontAwesome5 name="facebook-square" size={34} color="#0E17ED" />
-          <FontAwesome5 name="instagram-square" size={34} color="#D33A39" />
-        </View>
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+          <ScrollView
+            contentContainerStyle={{
+              alignItems: 'center',
+              justifyContent: 'center',
+              flex: 1,
+            }}
+          >
+            <View style={styles.toptext}>
+              <Toptext />
+            </View>
+            <View style={styles.form}>
+              <Input
+                value={data.email}
+                onChangeText={(email) => handleInput({ email })}
+                placeholder="Email Address"
+                autoCapitalize="none"
+                keyboardType="email-address"
+                coverStyle={{}}
+              />
+              <Input
+                value={data.password}
+                onChangeText={(password) => handleInput({ password })}
+                placeholder="Password"
+              />
+
+              <TouchableOpacity style={styles.pascont}>
+                <Text style={styles.pas}>Forgot Password?</Text>
+              </TouchableOpacity>
+              <TouchableOpacity activeOpacity={0.5} style={styles.butcont}>
+                <Text style={styles.buttext}>SIGN IN</Text>
+              </TouchableOpacity>
+              <View style={styles.lncont}>
+                <View style={styles.leftln}></View>
+                <Text style={styles.lntext}>OR</Text>
+                <View style={styles.rightln}></View>
+              </View>
+              <View style={styles.iconcont}></View>
+            </View>
+            <View style={styles.smlinks}>
+              <TouchableOpacity style={styles.icon}>
+                <FontAwesome5 name="twitter-square" size={34} color="#1C7ED6" />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.icon}>
+                <FontAwesome5
+                  name="facebook-square"
+                  size={34}
+                  color="#0E17ED"
+                />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.icon}>
+                <FontAwesome5
+                  name="instagram-square"
+                  size={34}
+                  color="#D33A39"
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={{ flexDirection: 'row', paddingTop: 30 }}>
+              <NormalText style={{ paddingRight: 10, fontSize: 15 }}>
+                Not a user yet?
+              </NormalText>
+              <TouchableOpacity>
+                <NormalText style={{ color: '#D33A39', fontSize: 15 }}>
+                  Sign up
+                </NormalText>
+              </TouchableOpacity>
+            </View>
+          </ScrollView>
+        </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
     </View>
   )
@@ -99,28 +117,19 @@ export default Login
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#0F192B',
+    height: '100%',
+    width: '100%',
+    backgroundColor: '#122332',
+    paddingTop: 30,
   },
-  toptext: {
-    paddingTop: 50,
-  },
-  action: {
-    borderWidth: 1,
-    borderColor: '#D33A39',
-    borderRadius: 30,
-    backgroundColor: '#5E6A75',
-    justifyContent: 'center',
-    margin: 30,
-    height: 58,
-    width: '80%',
-  },
-  textInput: {
-    color: '#5E6A75',
-    paddingLeft: 15,
+
+  toptext: { marginTop: 80 },
+  form: {
+    paddingTop: 60,
   },
   pascont: {
     alignItems: 'center',
+    marginVertical: 30,
   },
   pas: {
     color: '#FFFFFF',
@@ -129,21 +138,43 @@ const styles = StyleSheet.create({
   },
   butcont: {
     borderWidth: 1,
+    marginTop: 20,
     borderColor: '#FFFFFF',
     borderRadius: 30,
     backgroundColor: '#D33A39',
     justifyContent: 'center',
-    margin: 30,
-    height: 58,
-    width: '80%',
+    height: 50,
   },
   buttext: {
     color: '#FFFFFF',
     textAlign: 'center',
   },
+  lncont: {
+    marginVertical: 10,
+    paddingVertical: 30,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  leftln: {
+    borderWidth: 1,
+    width: '90%',
+    borderColor: '#9ba0a8',
+    width: 140,
+  },
+  lntext: {
+    color: '#9ba0a8',
+    fontSize: 20,
+  },
+  rightln: {
+    borderWidth: 1,
+    borderColor: '#9ba0a8',
+    width: 140,
+  },
   smlinks: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+  },
+  icon: {
     marginHorizontal: 40,
   },
 })
