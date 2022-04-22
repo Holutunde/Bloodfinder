@@ -16,7 +16,7 @@ import NormalText, { BoldText } from '../components/Text'
 import Input from '../components/Input'
 import { FontAwesome5 } from '@expo/vector-icons'
 
-const Signup = ({navigation}) => {
+const Signup = ({ navigation }) => {
   const [data, setData] = useState({
     email: '',
     password: '',
@@ -48,7 +48,7 @@ const Signup = ({navigation}) => {
             </View>
             <View style={styles.form}>
               <Input placeholder="Name of Hospital/Lab" />
-              <Input placeholder="Loaction" />
+              <Input placeholder="Location" />
               <Input placeholder="Email Address" />
               <Input placeholder="Password" />
               <Input placeholder="Confirm password" />
