@@ -16,19 +16,16 @@ import NormalText, { BoldText } from '../components/Text'
 import Input from '../components/Input'
 import { FontAwesome5 } from '@expo/vector-icons'
 
-const Login = () => {
+const Login = ({ navigation }) => {
   const [data, setData] = useState({
     email: '',
     password: '',
-    check_textInputChange: false,
-    secureTextEntry: true,
   })
 
   const handleInput = (value) => {
     setData({
       ...data,
       ...value,
-      check_textInputChange: true,
     })
   }
 
@@ -100,7 +97,7 @@ const Login = () => {
               <NormalText style={{ paddingRight: 10, fontSize: 15 }}>
                 Not a user yet?
               </NormalText>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
                 <NormalText style={{ color: '#D33A39', fontSize: 15 }}>
                   Sign up
                 </NormalText>
@@ -123,7 +120,7 @@ const styles = StyleSheet.create({
     paddingTop: 30,
   },
 
-  toptext: { marginTop: 80 },
+  toptext: { marginTop: 70 },
   form: {
     paddingTop: 60,
   },
@@ -157,7 +154,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   leftln: {
-    borderWidth: 1,
+    borderWidth: 0.5,
     width: '90%',
     borderColor: '#9ba0a8',
     width: 140,
@@ -167,7 +164,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   rightln: {
-    borderWidth: 1,
+    borderWidth: 0.5,
     borderColor: '#9ba0a8',
     width: 140,
   },
