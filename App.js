@@ -1,28 +1,36 @@
-import { StatusBar } from 'expo-status-bar'
-import React from 'react'
-import { useFonts } from 'expo-font'
-import { StyleSheet, Text, View } from 'react-native'
+import * as React from 'react'
+import { Button, View } from 'react-native'
+import { createDrawerNavigator } from '@react-navigation/drawer'
 import { NavigationContainer } from '@react-navigation/native'
-import AuthStack from './Navigation/AuthStack'
-import Login from './screens/Login'
 
-const customFonts = {
-  DMSansRegular: require('./assets/fonts/DMSans-Regular.ttf'),
-  DMSansBold: require('./assets/fonts/DMSans-Bold.ttf'),
-  DMSansBoldItalic: require('./assets/fonts/DMSans-BoldItalic.ttf'),
-  DMSansMeduim: require('./assets/fonts/DMSans-Medium.ttf'),
-  DMSansMediumItalic: require('./assets/fonts/DMSans-MediumItalic.ttf'),
-  DMSansItalic: require('./assets/fonts/DMSans-Italic.ttf'),
-}
-const App = () => {
-  const [fontsLoaded] = useFonts(customFonts)
+function HomeScreen({ navigation }) {
   return (
-    <NavigationContainer>{fontsLoaded && <AuthStack />}</NavigationContainer>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Button
+        onPress={() => navigation.navigate('Notifications')}
+        title="Go to notifications"
+      />
+    </View>
   )
 }
 
-export default App
+function NotificationsScreen({ navigation }) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Button onPress={() => navigation.goBack()} title="Go back home" />
+    </View>
+  )
+}
 
-const styles = StyleSheet.create({
-  container: {},
-})
+const Drawer = createDrawerNavigator()
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Home" component={HomeScreen} />
+        <Drawer.Screen name="Notifications" component={NotificationsScreen} />
+      </Drawer.Navigator>
+    </NavigationContainer>
+  )
+}
