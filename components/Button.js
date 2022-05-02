@@ -14,20 +14,19 @@ const Button = ({
     <TouchableOpacity
       onPress={onPress}
       style={{
-        height: 44,
-        width: 356,
+        height: 38,
+        width: 386,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#0050C8',
-        marginVertical: 10,
-        borderRadius: 8,
+        borderWidth: 1,
+        borderColor: '#fff',
+        backgroundColor: '#D33A39',
+        marginVertical: 15,
         ...style,
       }}
     >
       <Text
         style={{
-          fontSize: 16,
-          fontFamily: 'UbuntuRegular',
           color: 'white',
           ...textStyle,
         }}
