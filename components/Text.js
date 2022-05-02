@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Text as NativeText } from 'react-native'
 
-const fontSize = 14
+const fontSize = 10
 const styles = {
   fontSize,
 }
