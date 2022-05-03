@@ -5,12 +5,16 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 import NormalText, { BoldText } from '../components/Text'
+import { CartContext } from '../Util/Cartcontext'
 import { AntDesign, FontAwesome5 } from '@expo/vector-icons'
 import Button from '../components/Button'
 
-const Search = () => {
+const Search = ({ navigation }) => {
+  const { itemNumber1, setItemNumber1 } = useContext(CartContext)
+  const { itemNumber2, setItemNumber2 } = useContext(CartContext)
+
   return (
     <View style={styles.container}>
       <View style={styles.upper}>
@@ -44,10 +48,25 @@ const Search = () => {
             <View style={styles.ltextcont}>
               <NormalText>Amount</NormalText>
               <View style={styles.logic}>
-                <TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() =>
+                    setItemNumber2(() => {
+                      if (itemNumber2 <= 0) {
+                        return 0
+                      } else {
+                        return itemNumber2 - 1
+                      }
+                    })
+                  }
+                >
                   <AntDesign name="minuscircle" size={15} color="white" />
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <NormalText style={{ paddingHorizontal: 4 }}>
+                  {itemNumber2}
+                </NormalText>
+                <TouchableOpacity
+                  onPress={() => setItemNumber2(itemNumber2 + 1)}
+                >
                   <AntDesign name="pluscircle" size={15} color="white" />
                 </TouchableOpacity>
               </View>
@@ -61,6 +80,7 @@ const Search = () => {
             <NormalText>Can receive from O+ 0-</NormalText>
             <NormalText>Pints available: 6</NormalText>
             <Button
+              onPress={() => navigation.navigate('Cart')}
               style={{ width: 100, height: 26, fontSize: 8 }}
               text="Add to cart"
             />
@@ -72,7 +92,7 @@ const Search = () => {
           <View style={styles.left}>
             <Image
               style={styles.img}
-              source={require('../assets/images/Search1.png')}
+              source={require('../assets/images/Search2.png')}
             />
             <View style={styles.textcont}>
               <NormalText>Price</NormalText>
@@ -81,10 +101,25 @@ const Search = () => {
             <View style={styles.ltextcont}>
               <NormalText>Amount</NormalText>
               <View style={styles.logic}>
-                <TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() =>
+                    setItemNumber1(() => {
+                      if (itemNumber1 <= 0) {
+                        return 0
+                      } else {
+                        return itemNumber1 - 1
+                      }
+                    })
+                  }
+                >
                   <AntDesign name="minuscircle" size={15} color="white" />
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <NormalText style={{ paddingHorizontal: 4 }}>
+                  {itemNumber1}
+                </NormalText>
+                <TouchableOpacity
+                  onPress={() => setItemNumber1(itemNumber1 + 1)}
+                >
                   <AntDesign name="pluscircle" size={15} color="white" />
                 </TouchableOpacity>
               </View>
@@ -92,11 +127,11 @@ const Search = () => {
           </View>
           <View style={styles.right}>
             <NormalText style={{ color: 'grey' }}>Info</NormalText>
-            <NormalText>Lab: Assured Life</NormalText>
-            <NormalText>Blood type: O+</NormalText>
-            <NormalText>Can donate to: O+ b+ A+ AB+</NormalText>
-            <NormalText>Can receive from O+ 0-</NormalText>
-            <NormalText>Pints available: 6</NormalText>
+            <NormalText>Lab: Perry's lab</NormalText>
+            <NormalText>Blood type: A+</NormalText>
+            <NormalText>Can donate to: A+ AB+</NormalText>
+            <NormalText>Can receive from: A+ A- O+ 0-</NormalText>
+            <NormalText>Pints available: l8</NormalText>
             <Button
               style={{ width: 100, height: 26, fontSize: 8 }}
               text="Add to cart"
@@ -104,8 +139,31 @@ const Search = () => {
           </View>
         </View>
       </View>
-      <View style={{ alignItems: 'center', marginTop: 50 }}>
+      <View style={{ alignItems: 'center', marginVertical: 50 }}>
         <NormalText>Load more......</NormalText>
+      </View>
+      <View style={styles.cont}>
+        <View style={styles.singlecont}>
+          <Image
+            style={styles.contimg}
+            source={require('../assets/images/Search4.png')}
+          />
+          <NormalText>Total available pints</NormalText>
+        </View>
+        <View style={styles.singlecont}>
+          <Image
+            style={styles.contimg}
+            source={require('../assets/images/Search5.png')}
+          />
+          <NormalText>All Available Blood Groups</NormalText>
+        </View>
+        <View style={styles.singlecont}>
+          <Image
+            style={styles.contimg}
+            source={require('../assets/images/Search6.png')}
+          />
+          <NormalText>Manual Search</NormalText>
+        </View>
       </View>
     </View>
   )
@@ -181,5 +239,21 @@ const styles = StyleSheet.create({
   logic: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  cont: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 15,
+  },
+  singlecont: {
+    backgroundColor: '#122332',
+    height: 130,
+    width: 120,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  contimg: {
+    marginBottom: 12,
   },
 })
