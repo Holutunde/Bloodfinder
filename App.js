@@ -5,6 +5,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import AuthStack from './Navigation/AuthStack'
 import Login from './screens/Login'
+import { CartContextProvider } from './Util/Cartcontext'
 
 const customFonts = {
   DMSansRegular: require('./assets/fonts/DMSans-Regular.ttf'),
@@ -17,7 +18,9 @@ const customFonts = {
 const App = () => {
   const [fontsLoaded] = useFonts(customFonts)
   return (
-    <NavigationContainer>{fontsLoaded && <AuthStack />}</NavigationContainer>
+    <CartContextProvider>
+      <NavigationContainer>{fontsLoaded && <AuthStack />}</NavigationContainer>
+    </CartContextProvider>
   )
 }
 
