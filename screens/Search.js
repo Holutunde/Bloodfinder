@@ -82,8 +82,9 @@ const Search = ({ navigation }) => {
             <Button
               onPress={() => navigation.navigate('Cart')}
               style={{ width: 100, height: 26, fontSize: 8 }}
-              text="Add to cart"
-            />
+            >
+              Add to cart
+            </Button>
           </View>
         </View>
       </View>
@@ -133,9 +134,11 @@ const Search = ({ navigation }) => {
             <NormalText>Can receive from: A+ A- O+ 0-</NormalText>
             <NormalText>Pints available: l8</NormalText>
             <Button
+              onPress={() => navigation.navigate('Cart')}
               style={{ width: 100, height: 26, fontSize: 8 }}
-              text="Add to cart"
-            />
+            >
+              Add to cart
+            </Button>
           </View>
         </View>
       </View>

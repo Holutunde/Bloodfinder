@@ -2,7 +2,7 @@ import React from 'react'
 import { TouchableOpacity, Text, ActivityIndicator } from 'react-native'
 
 const Button = ({
-  text,
+  children,
   onPress,
   style = {},
   textStyle = {},
@@ -31,7 +31,7 @@ const Button = ({
           ...textStyle,
         }}
       >
-        {text}
+        {children}
       </Text>
     </TouchableOpacity>
   )
