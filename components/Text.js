@@ -29,9 +29,10 @@ export const BoldText = ({ style = {}, children, ...props }) => {
   return (
     <NativeText
       style={{
+        fontFamily: 'DMSansRegular',
         color: 'white',
-        lineHeight: (style?.fontSize ?? fontSize) * 1.5,
-        ...styles,
+        lineHeight: 35,
+        fontSize: 15,
         ...style,
       }}
       {...props}
@@ -47,24 +48,6 @@ export const VeryBoldText = ({ style = {}, children, ...props }) => {
       style={{
         fontFamily: 'DMSansBold',
         lineHeight: (style?.fontSize ?? fontSize) * 1.5,
-        color: theme === 'light' ? '#393A4A' : '#fff',
-        ...styles,
-        ...style,
-      }}
-      {...props}
-    >
-      {children}
-    </NativeText>
-  )
-}
-
-export const LightText = ({ style = {}, children, ...props }) => {
-  return (
-    <NativeText
-      style={{
-        fontFamily: 'UbuntuLight',
-        lineHeight: (style?.fontSize ?? fontSize) * 1.5,
-        color: theme === 'light' ? '#393A4A' : '#fff',
         ...styles,
         ...style,
       }}
