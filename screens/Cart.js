@@ -123,14 +123,13 @@ const Cart = ({ navigation }) => {
             <NormalText>{addItemNumber} Items on cart</NormalText>
             <NormalText>N77,005.00</NormalText>
           </View>
-          <View style={styles.footerbtn}>
-            <Button
-              onPress={() => navigation.navigate('Checkout1')}
-              style={{ width: 131, height: 36, fontSize: 8 }}
-            >
-              Secure Checkout
-            </Button>
-          </View>
+
+          <Button
+            onPress={() => navigation.navigate('Checkout1')}
+            style={{ width: 131, height: 36, fontSize: 8 }}
+          >
+            Secure Checkout
+          </Button>
         </View>
       </View>
     </View>
@@ -193,7 +192,16 @@ const styles = StyleSheet.create({
 
   lowerleft: {
     marginTop: 10,
-    paddingLeft: 4,
+    backgroundColor: '#04172A',
+    height: 33,
+    width: 31,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: 'black',
+    shadowOffset: { width: -2, height: 10 },
+    shadowOpacity: 0.2,
+    shadowRadius: 10,
+    elevation: 5,
   },
   lowerimg: {
     width: 17,

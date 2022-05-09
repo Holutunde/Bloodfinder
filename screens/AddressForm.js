@@ -11,6 +11,7 @@ import {
 } from 'react-native'
 import React, { useState } from 'react'
 import Input from '../components/Input'
+import { BoldText } from '../components/Text'
 
 const AddressForm = ({ navigation, setModalOpen }) => {
   const [data, setData] = useState({
@@ -39,6 +40,9 @@ const AddressForm = ({ navigation, setModalOpen }) => {
             }}
           >
             <View style={styles.form}>
+              <BoldText style={{ marginLeft: 10, fontSize: 17 }}>
+                Add Delivery Address
+              </BoldText>
               <Input
                 value={data.lab}
                 onChangeText={(lab) => handleInput({ lab })}
@@ -56,7 +60,7 @@ const AddressForm = ({ navigation, setModalOpen }) => {
                 activeOpacity={0.5}
                 style={styles.butcont}
               >
-                <Text style={styles.buttext}>SIGN IN</Text>
+                <Text style={styles.buttext}>Add</Text>
               </TouchableOpacity>
             </View>
           </ScrollView>
@@ -73,6 +77,19 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '100%',
     backgroundColor: '#122332',
-    paddingTop: 30,
+    paddingTop: 100,
+  },
+  butcont: {
+    borderWidth: 1,
+    marginTop: 20,
+    borderColor: '#FFFFFF',
+    borderRadius: 30,
+    backgroundColor: '#D33A39',
+    justifyContent: 'center',
+    height: 50,
+  },
+  buttext: {
+    color: '#FFFFFF',
+    textAlign: 'center',
   },
 })

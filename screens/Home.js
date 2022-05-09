@@ -1,4 +1,3 @@
-
 import {
   StyleSheet,
   Image,
@@ -99,11 +98,10 @@ export default Home
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
     backgroundColor: '#0a1e30',
   },
   topcont: {
-    marginTop: 30,
+    marginTop: 55,
     marginHorizontal: 30,
     flexDirection: 'row',
     justifyContent: 'space-between',
