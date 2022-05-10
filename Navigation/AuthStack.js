@@ -7,6 +7,7 @@ import Search from '../screens/Search'
 import Cart from '../screens/Cart'
 import Checkout1 from '../screens/Checkout1'
 import Checkout2 from '../screens/Checkout2'
+import Checkout3 from '../screens/Checkout3'
 
 const Stack = createNativeStackNavigator()
 
@@ -20,6 +21,7 @@ const AuthStack = () => {
       <Stack.Screen name="Cart" component={Cart} />
       <Stack.Screen name="Checkout1" component={Checkout1} />
       <Stack.Screen name="Checkout2" component={Checkout2} />
+      <Stack.Screen name="Checkout3" component={Checkout3} />
     </Stack.Navigator>
   )
 }
