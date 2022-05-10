@@ -45,7 +45,7 @@ const Checkout1 = ({ navigation }) => {
         <BoldText style={styles.toptext}>Checkout(1/3)</BoldText>
       </View>
       <BoldText style={{ marginLeft: 10, fontSize: 17 }}>
-        Select Delivery Address
+        Select delivery address
       </BoldText>
       <View style={styles.addcont}>
         <TouchableOpacity
@@ -166,6 +166,7 @@ const styles = StyleSheet.create({
   uppertext: {
     alignItems: 'center',
     marginTop: 50,
+    marginBottom: 20,
   },
   toptext: {
     fontSize: 20,
@@ -250,7 +251,7 @@ const styles = StyleSheet.create({
     height: 22,
   },
   footerbtn: {
-    marginBottom: 35,
+    marginBottom: 58,
     marginStart: 13,
   },
 })
