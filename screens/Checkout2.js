@@ -1,20 +1,6 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Modal,
-  FlatList,
-  Keyboard,
-  Image,
-  Platform,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  ScrollView,
-  KeyboardAvoidingView,
-} from 'react-native'
-import React, { useState } from 'react'
-import Input from '../components/Input'
-import { FontAwesome, Ionicons, AntDesign } from '@expo/vector-icons'
+import { StyleSheet, View } from 'react-native'
+import React from 'react'
+import { FontAwesome, Ionicons } from '@expo/vector-icons'
 import NormalText, { BoldText } from '../components/Text'
 import Button from '../components/Button'
 
