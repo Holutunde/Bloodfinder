@@ -147,16 +147,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   uppertext: {
-    marginTop: 50,
+    marginTop: 70,
   },
   toptext: {
-    fontSize: 20,
+    fontSize: 24,
   },
   searchcont: {
     flexDirection: 'row',
     backgroundColor: '#122332',
     width: 378,
-    marginTop: 20,
+    marginTop: 30,
     height: 62,
     paddingHorizontal: 15,
     alignItems: 'center',
@@ -232,6 +232,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginHorizontal: 45,
-    marginTop: 140,
+    marginTop: 122,
   },
 })
