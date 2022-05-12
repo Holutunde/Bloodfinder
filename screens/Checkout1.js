@@ -165,11 +165,11 @@ const styles = StyleSheet.create({
   },
   uppertext: {
     alignItems: 'center',
-    marginTop: 50,
+    marginTop: 70,
     marginBottom: 20,
   },
   toptext: {
-    fontSize: 20,
+    fontSize: 24,
   },
   addcont: {
     backgroundColor: '#122332',

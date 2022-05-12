@@ -68,11 +68,11 @@ const styles = StyleSheet.create({
   },
   uppertext: {
     alignItems: 'center',
-    marginTop: 50,
+    marginTop: 70,
     marginBottom: 20,
   },
   toptext: {
-    fontSize: 20,
+    fontSize: 24,
   },
   cont: {
     backgroundColor: '#122332',
@@ -114,6 +114,6 @@ const styles = StyleSheet.create({
   },
   footerbtn: {
     marginStart: 13,
-    marginTop: 270,
+    marginTop: 250,
   },
 })

@@ -40,7 +40,7 @@ const Checkout3 = ({ navigation }) => {
           Continue Shopping
         </Button>
         <Button
-          onPress={() => navigation.navigate('Order')}
+          onPress={() => navigation.navigate('Delivery')}
           style={{ width: 181, height: 38 }}
         >
           Track Order
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   toptext: {
-    fontSize: 20,
+    fontSize: 24,
   },
   imgcont: {
     alignItems: 'center',
