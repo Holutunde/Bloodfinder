@@ -1,29 +1,24 @@
 import { StyleSheet, View, Image } from 'react-native'
 import React from 'react'
-import { BoldText } from '../components/Text'
 import Button from '../components/Button'
-
-const Delivery = ({ navigation }) => {
+import { BoldText } from '../components/Text'
+const Thank = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.uppertext}>
-        <BoldText style={styles.toptext}>Confirm Delivery</BoldText>
+        <BoldText style={styles.toptext}>THANK YOU!</BoldText>
       </View>
       <View style={styles.imgcont}>
         <Image
           style={styles.img}
-          source={require('../assets/images/Delivery.png')}
+          source={require('../assets/images/Thank.png')}
         />
         <View style={styles.remark}>
-          <BoldText style={{ fontSize: 22, marginTop: 90 }}>
-            Package Safely Delivered?
-          </BoldText>
           <Button
-            onPress={() => navigation.navigate('Thank')}
             style={{ width: 363, height: 38, marginTop: 120 }}
             textStyle={{ fontSize: 22 }}
           >
-            Confirm
+            Exit
           </Button>
         </View>
       </View>
@@ -31,16 +26,17 @@ const Delivery = ({ navigation }) => {
   )
 }
 
-export default Delivery
+export default Thank
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#0a1e30',
+    paddingTop: 50,
   },
   uppertext: {
     alignItems: 'center',
-    marginTop: 70,
+    marginTop: 80,
     marginBottom: 20,
   },
   toptext: {
@@ -48,14 +44,13 @@ const styles = StyleSheet.create({
   },
   imgcont: {
     alignItems: 'center',
-    marginTop: 30,
+    marginTop: 100,
   },
   remark: {
-    backgroundColor: '#122332',
     width: '100%',
     height: 348,
     alignItems: 'center',
     borderColor: 'white',
-    marginTop: 30,
+    marginTop: 50,
   },
 })

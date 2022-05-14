@@ -28,6 +28,7 @@ const Button = ({
       <Text
         style={{
           color: 'white',
+          fontSize: 18,
           ...textStyle,
         }}
       >
