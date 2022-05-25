@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   },
   uppertext: {
     alignItems: 'center',
-    marginTop: 80,
+    marginTop: 85,
     marginBottom: 20,
   },
   toptext: {
