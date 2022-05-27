@@ -61,7 +61,10 @@ const Login = ({ navigation }) => {
                 placeholder="Password"
               />
 
-              <TouchableOpacity style={styles.pascont}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('ResetPassword1')}
+                style={styles.pascont}
+              >
                 <Text style={styles.pas}>Forgot Password?</Text>
               </TouchableOpacity>
               <TouchableOpacity
