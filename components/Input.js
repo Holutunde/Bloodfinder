@@ -52,6 +52,11 @@ const Input = ({
         ...coverStyle,
       }}
     >
+      {LeftIcon && (
+        <View style={{ marginRight: 10 }}>
+          <LeftIcon />
+        </View>
+      )}
       <TextInput
         value={value}
         onChangeText={onChangeText}
