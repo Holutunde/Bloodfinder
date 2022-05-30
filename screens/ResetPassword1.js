@@ -66,6 +66,7 @@ const ResetPassword1 = ({ navigation }) => {
                   height: 58,
                   borderColor: '#D33A39',
                 }}
+                onPress={() => navigation.navigate('ResetPassword2')}
               >
                 UPDATE PASSWORD
               </Button>
