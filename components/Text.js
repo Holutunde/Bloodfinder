@@ -29,7 +29,7 @@ export const BoldText = ({ style = {}, children, ...props }) => {
   return (
     <NativeText
       style={{
-        fontFamily: 'DMSansRegular',
+        fontFamily: 'DMSansBold',
         color: 'white',
         lineHeight: 35,
         fontSize: 15,

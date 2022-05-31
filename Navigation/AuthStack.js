@@ -13,6 +13,7 @@ import Delivery from '../screens/Delivery'
 import Thank from '../screens/Thank'
 import ResetPassword1 from '../screens/ResetPassword1'
 import ResetPassword2 from '../screens/ResetPassword2'
+import ResetPassword3 from '../screens/ResetPassword3'
 
 const Stack = createNativeStackNavigator()
 
@@ -32,6 +33,7 @@ const AuthStack = () => {
       <Stack.Screen name="Thank" component={Thank} />
       <Stack.Screen name="ResetPassword1" component={ResetPassword1} />
       <Stack.Screen name="ResetPassword2" component={ResetPassword2} />
+      <Stack.Screen name="ResetPassword3" component={ResetPassword3} />
     </Stack.Navigator>
   )
 }
