@@ -80,8 +80,8 @@ const ResetPassword2 = ({ navigation }) => {
                     paddingHorizontal: 6,
                     marginRight: 10,
                   }}
-                  KeyboardType="numeric"
-                  maxLength="1"
+                  KeyboardType={'numeric'}
+                  maxLength={1}
                 />
                 <Input
                   style={{ color: '#FFFFFF' }}
@@ -94,8 +94,8 @@ const ResetPassword2 = ({ navigation }) => {
                     paddingHorizontal: 6,
                     marginRight: 10,
                   }}
-                  KeyboardType="numeric"
-                  maxLength="1"
+                  KeyboardType={'numeric'}
+                  maxLength={1}
                 />
                 <Input
                   style={{ color: '#FFFFFF' }}
@@ -108,8 +108,8 @@ const ResetPassword2 = ({ navigation }) => {
                     paddingHorizontal: 6,
                     marginRight: 10,
                   }}
-                  KeyboardType="numeric"
-                  maxLength="1"
+                  KeyboardType={'numeric'}
+                  maxLength={1}
                 />
                 <Input
                   style={{ color: '#FFFFFF' }}
@@ -122,8 +122,8 @@ const ResetPassword2 = ({ navigation }) => {
                     paddingHorizontal: 6,
                     marginRight: 10,
                   }}
-                  KeyboardType="numeric"
-                  maxLength="1"
+                  KeyboardType={'numeric'}
+                  maxLength={1}
                 />
               </View>
               <Button
