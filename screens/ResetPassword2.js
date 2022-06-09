@@ -3,6 +3,7 @@ import {
   View,
   Image,
   Keyboard,
+  TextInput,
   ScrollView,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
@@ -11,7 +12,6 @@ import React from 'react'
 import NormalText, { BoldText } from '../components/Text'
 import Button from '../components/Button'
 import Input from '../components/Input'
-import { AntDesign } from '@expo/vector-icons'
 
 const ResetPassword2 = ({ navigation }) => {
   return (
@@ -33,6 +33,11 @@ const ResetPassword2 = ({ navigation }) => {
                 style={styles.img}
                 source={require('../assets/images/Resetpass.png')}
               />
+              <TextInput
+                placeholder="olu"
+                maxLength={2}
+                keyboardType="numeric"
+              />
 
               <BoldText style={{ fontSize: 25, marginTop: 80 }}>
                 Forgot Password
@@ -53,7 +58,20 @@ const ResetPassword2 = ({ navigation }) => {
                     marginRight: 10,
                   }}
                   KeyboardType="numeric"
-                  maxLength="1"
+                  maxLength={1}
+                />
+                <Input
+                  style={{ color: '#FFFFFF' }}
+                  coverStyle={{
+                    backgroundColor: '#0a1e30',
+                    borderColor: 'grey',
+                    borderRadius: 0,
+                    width: 36,
+                    height: 29,
+                    paddingHorizontal: 6,
+                    marginRight: 10,
+                  }}
+                  maxLength={1}
                 />
                 <Input
                   style={{ color: '#FFFFFF' }}
@@ -67,20 +85,6 @@ const ResetPassword2 = ({ navigation }) => {
                     marginRight: 10,
                   }}
                   KeyboardType="numeric"
-                  maxLength="1"
-                />
-                <Input
-                  style={{ color: '#FFFFFF' }}
-                  coverStyle={{
-                    backgroundColor: '#0a1e30',
-                    borderColor: 'grey',
-                    borderRadius: 0,
-                    width: 36,
-                    height: 29,
-                    paddingHorizontal: 6,
-                    marginRight: 10,
-                  }}
-                  KeyboardType={'numeric'}
                   maxLength={1}
                 />
                 <Input
@@ -94,7 +98,7 @@ const ResetPassword2 = ({ navigation }) => {
                     paddingHorizontal: 6,
                     marginRight: 10,
                   }}
-                  KeyboardType={'numeric'}
+                  KeyboardType="numeric"
                   maxLength={1}
                 />
                 <Input
@@ -108,7 +112,7 @@ const ResetPassword2 = ({ navigation }) => {
                     paddingHorizontal: 6,
                     marginRight: 10,
                   }}
-                  KeyboardType={'numeric'}
+                  KeyboardType="number-pad"
                   maxLength={1}
                 />
                 <Input
@@ -122,8 +126,7 @@ const ResetPassword2 = ({ navigation }) => {
                     paddingHorizontal: 6,
                     marginRight: 10,
                   }}
-                  KeyboardType={'numeric'}
-                  maxLength={1}
+                  KeyboardType="numeric"
                 />
               </View>
               <Button

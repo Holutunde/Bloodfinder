@@ -23,6 +23,8 @@ const Input = ({
   placeholder = '',
   autoCapitalize = 'sentences',
   secureTextEntry = false,
+  keyboardType = '',
+  maxLength,
   coverStyle = {},
   RightIcon = null,
   LeftIcon = null,
@@ -64,6 +66,8 @@ const Input = ({
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
         placeholder={placeholder}
+        keyboardType="numeric"
+        maxLength={maxLength}
         placeholderTextColor={inputTextColor}
         autoCapitalize={secureTextEntry ? 'none' : autoCapitalize}
         secureTextEntry={secureTextEntry && !showPassword}
