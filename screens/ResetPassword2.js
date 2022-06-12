@@ -127,6 +127,7 @@ const ResetPassword2 = ({ navigation }) => {
                     marginRight: 10,
                   }}
                   KeyboardType="numeric"
+                  maxLength={1}
                 />
               </View>
               <Button
