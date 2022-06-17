@@ -59,3 +59,34 @@ export const DONORS = [
     image: require('../assets/images/R520.png'),
   },
 ]
+
+export const LANGUAGE = [
+  {
+    id: 1,
+    title: 'ENGLISH',
+    image: require('../assets/images/country.png'),
+  },
+
+  {
+    id: 2,
+    title: 'GERMAN',
+    image: require('../assets/images/country.png'),
+  },
+
+  {
+    id: 3,
+    title: 'FRENCH',
+    image: require('../assets/images/country.png'),
+  },
+
+  {
+    id: 4,
+    title: 'CHINESE',
+    image: require('../assets/images/country.png'),
+  },
+  {
+    id: 5,
+    title: 'SPANISH',
+    image: require('../assets/images/country.png'),
+  },
+]
