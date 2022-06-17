@@ -71,19 +71,7 @@ const ResetPassword2 = ({ navigation }) => {
                     paddingHorizontal: 6,
                     marginRight: 10,
                   }}
-                  maxLength={1}
-                />
-                <Input
-                  style={{ color: '#FFFFFF' }}
-                  coverStyle={{
-                    backgroundColor: '#0a1e30',
-                    borderColor: 'grey',
-                    borderRadius: 0,
-                    width: 36,
-                    height: 29,
-                    paddingHorizontal: 6,
-                    marginRight: 10,
-                  }}
+
                   KeyboardType="numeric"
                   maxLength={1}
                 />
@@ -112,7 +100,22 @@ const ResetPassword2 = ({ navigation }) => {
                     paddingHorizontal: 6,
                     marginRight: 10,
                   }}
-                  KeyboardType="number-pad"
+                  KeyboardType="numeric"
+                  maxLength={1}
+                />
+                <Input
+                  style={{ color: '#FFFFFF' }}
+                  coverStyle={{
+                    backgroundColor: '#0a1e30',
+                    borderColor: 'grey',
+                    borderRadius: 0,
+                    width: 36,
+                    height: 29,
+                    paddingHorizontal: 6,
+                    marginRight: 10,
+                  }}
+
+                  KeyboardType="numeric"
                   maxLength={1}
                 />
                 <Input
