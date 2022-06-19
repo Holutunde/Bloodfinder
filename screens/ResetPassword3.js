@@ -51,6 +51,7 @@ const ResetPassword3 = ({ navigation }) => {
                   borderColor: '#D33A39',
                   marginTop: 20,
                 }}
+                onPress={() => navigation.navigate('GetStarted')}
               >
                 SIGN IN
               </Button>

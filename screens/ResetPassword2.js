@@ -3,6 +3,7 @@ import {
   View,
   Image,
   Keyboard,
+  TextInput,
   ScrollView,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
@@ -11,7 +12,6 @@ import React from 'react'
 import NormalText, { BoldText } from '../components/Text'
 import Button from '../components/Button'
 import Input from '../components/Input'
-import { AntDesign } from '@expo/vector-icons'
 
 const ResetPassword2 = ({ navigation }) => {
   return (
@@ -32,6 +32,11 @@ const ResetPassword2 = ({ navigation }) => {
               <Image
                 style={styles.img}
                 source={require('../assets/images/Resetpass.png')}
+              />
+              <TextInput
+                placeholder="olu"
+                maxLength={2}
+                keyboardType="numeric"
               />
 
               <BoldText style={{ fontSize: 25, marginTop: 80 }}>
@@ -66,6 +71,7 @@ const ResetPassword2 = ({ navigation }) => {
                     paddingHorizontal: 6,
                     marginRight: 10,
                   }}
+
                   KeyboardType="numeric"
                   maxLength={1}
                 />
@@ -108,6 +114,7 @@ const ResetPassword2 = ({ navigation }) => {
                     paddingHorizontal: 6,
                     marginRight: 10,
                   }}
+
                   KeyboardType="numeric"
                   maxLength={1}
                 />
