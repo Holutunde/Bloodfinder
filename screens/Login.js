@@ -10,13 +10,16 @@ import {
   StyleSheet,
 } from 'react-native'
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { SingleHeader } from '../components/Header'
 import Toptext from '../components/Toptext'
 import NormalText, { BoldText } from '../components/Text'
 import Input from '../components/Input'
+import { login } from '../actions/auth'
 import { FontAwesome5 } from '@expo/vector-icons'
 
 const Login = ({ navigation }) => {
+  const dispatch = useDispatch()
   const [data, setData] = useState({
     email: '',
     password: '',
@@ -51,8 +54,6 @@ const Login = ({ navigation }) => {
                 value={data.email}
                 onChangeText={(email) => handleInput({ email })}
                 placeholder="Email Address"
-                autoCapitalize="none"
-                keyboardType="email-address"
                 coverStyle={{}}
               />
               <Input
@@ -68,7 +69,7 @@ const Login = ({ navigation }) => {
                 <Text style={styles.pas}>Forgot Password?</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => navigation.navigate('Home')}
+                onPress={() => dispatch(login(data))}
                 activeOpacity={0.5}
                 style={styles.butcont}
               >
