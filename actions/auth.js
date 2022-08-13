@@ -15,16 +15,16 @@ import { apiRequest, showApiError } from '../helpers/api'
 
 export const regUser = (data) => ({
   type: REG_USER,
-  data: data,
+  payload: data,
 })
 
 export const saveUser = (data) => ({
   type: SAVE_USER,
-  data: data,
+  payload: data,
 })
 export const loading = (data) => ({
   type: LOADING,
-  data: data,
+  payload: data,
 })
 
 export const login = (data) => (dispatch) => {
@@ -36,7 +36,7 @@ export const login = (data) => (dispatch) => {
       if (data.error) {
         console.log('data error')
       }
-      dispatch(saveUser)
+      dispatch(saveUser(data))
       NavigationService.navigate('Home')
     })
     .catch((err) => console.log('wrong input'))

@@ -13,31 +13,33 @@ const initialState = {
     firstname: '',
     lastname: '',
     username: '',
-    email: '',
     password: '',
     role: '',
   },
-  user: null,
+  user: {
+    email: '',
+    password: '',
+  },
   token: null,
   isLoading: false,
 }
 
-const authReducer = (state = initialState, action) => {
-  switch (action.type) {
+const authReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
     case REG_USER:
       return {
         ...state,
-        regData: { ...action.data },
+        regData: { ...payload },
       }
 
     case SAVE_USER:
       //AsyncStorage.setItem('user', JSON.stringify(payload))
       return {
         ...state,
-        user: action.data,
+        user: payload,
       }
     case LOADING:
-      return { ...state, isLoading: action.data }
+      return { ...state, isLoading: payload }
     default:
       return state
   }
