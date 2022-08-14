@@ -7,7 +7,7 @@ import { AsyncStorage, Alert } from 'react-native'
 // import store from '../store'
 // import { SAVE_TOKEN } from '../types'
 
-const API_URL = 'http://localhost:5000/auth/'
+const API_URL = 'http://localhost:5000/auth'
 
 export const apiRequest = async (endpoint, method, body = {}, token) => {
   try {

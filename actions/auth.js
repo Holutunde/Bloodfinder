@@ -29,7 +29,7 @@ export const loading = (data) => ({
 
 export const login = (data) => (dispatch) => {
   dispatch(loading(true))
-  apiRequest('login', 'POST', data)
+  apiRequest('users/login', 'POST', data)
     .then(({ data }) => {
       console.log('login', data)
 
