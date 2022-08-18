@@ -27,19 +27,19 @@ export const loading = (data) => ({
   payload: data,
 })
 
-export const login = (data) => (dispatch) => {
+export const login = (user) => (dispatch) => {
   dispatch(loading(true))
-  apiRequest('users/login', 'POST', data)
+  apiRequest('auth/login/', 'POST', user)
     .then(({ data }) => {
-      console.log('login', data)
-
+      console.log('login details', data)
       if (data.error) {
         console.log('data error')
       }
       dispatch(saveUser(data))
-      NavigationService.navigate('Home')
     })
-    .catch((err) => console.log('wrong input'))
+    .catch((err) => {
+      showApiError(err, true, () => dispatch(login(user)))
+    })
     .finally(() => {
       dispatch(loading(false))
     })

@@ -10,10 +10,10 @@ import {
   StyleSheet,
 } from 'react-native'
 import React, { useState } from 'react'
-import { SingleHeader } from '../components/Header'
-import Toptext from '../components/Toptext'
-import NormalText, { BoldText } from '../components/Text'
-import Input from '../components/Input'
+import { SingleHeader } from '../../components/Header'
+import Toptext from '../../components/Toptext'
+import NormalText, { BoldText } from '../../components/Text'
+import Input from '../../components/Input'
 import { FontAwesome5 } from '@expo/vector-icons'
 
 const Signup = ({ navigation }) => {

@@ -8,10 +8,12 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native'
 import React from 'react'
-import NormalText, { BoldText } from '../components/Text'
-import Button from '../components/Button'
+import NormalText, { BoldText } from '../../components/Text'
+import Button from '../../components/Button'
+import Input from '../../components/Input'
+import { AntDesign } from '@expo/vector-icons'
 
-const ResetPassword3 = ({ navigation }) => {
+const ResetPassword1 = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView
@@ -29,17 +31,31 @@ const ResetPassword3 = ({ navigation }) => {
             <View style={styles.imgcont}>
               <Image
                 style={styles.img}
-                source={require('../assets/images/Resetpass3.png')}
+                source={require('../../assets/images/Resetpass.png')}
               />
 
-              <BoldText
-                style={{ fontSize: 24, marginTop: 80, fontWeight: '700' }}
-              >
-                Password reset
+              <BoldText style={{ fontSize: 25, marginTop: 80 }}>
+                Forgot Password
               </BoldText>
-              <NormalText style={{ fontSize: 13, marginTop: 30 }}>
-                Your password has been reset successfully
+              <NormalText
+                style={{ width: 308, fontSize: 13, marginVertical: 30 }}
+              >
+                Enter your phone number below we will send you an sms with a pin
+                code to confirm your identity
               </NormalText>
+              <Input
+                style={{ color: '#FFFFFF' }}
+                coverStyle={{
+                  backgroundColor: '#0a1e30',
+                  width: 308,
+                  height: 58,
+                  paddingLeft: 20,
+                }}
+                placeholder="Phone number"
+                LeftIcon={() => (
+                  <AntDesign name="phone" size={17} color="white" />
+                )}
+              />
               <Button
                 textStyle={{
                   fontSize: 15,
@@ -49,11 +65,10 @@ const ResetPassword3 = ({ navigation }) => {
                   width: 308,
                   height: 58,
                   borderColor: '#D33A39',
-                  marginTop: 20,
                 }}
-                onPress={() => navigation.navigate('GetStarted')}
+                onPress={() => navigation.navigate('ResetPassword2')}
               >
-                SIGN IN
+                UPDATE PASSWORD
               </Button>
             </View>
           </ScrollView>
@@ -63,7 +78,7 @@ const ResetPassword3 = ({ navigation }) => {
   )
 }
 
-export default ResetPassword3
+export default ResetPassword1
 
 const styles = StyleSheet.create({
   container: {

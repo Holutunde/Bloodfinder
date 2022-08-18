@@ -11,11 +11,11 @@ import {
 } from 'react-native'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { SingleHeader } from '../components/Header'
-import Toptext from '../components/Toptext'
-import NormalText, { BoldText } from '../components/Text'
-import Input from '../components/Input'
-import { login } from '../actions/auth'
+import { SingleHeader } from '../../components/Header'
+import Toptext from '../../components/Toptext'
+import NormalText, { BoldText } from '../../components/Text'
+import Input from '../../components/Input'
+import { login } from '../../actions/auth'
 import { FontAwesome5 } from '@expo/vector-icons'
 
 const Login = ({ navigation }) => {
@@ -69,7 +69,10 @@ const Login = ({ navigation }) => {
                 <Text style={styles.pas}>Forgot Password?</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => dispatch(login(data))}
+                onPress={() => {
+                  dispatch(login(data))
+                  navigation.navigate('Home')
+                }}
                 activeOpacity={0.5}
                 style={styles.butcont}
               >

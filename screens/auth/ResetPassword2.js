@@ -9,9 +9,9 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native'
 import React from 'react'
-import NormalText, { BoldText } from '../components/Text'
-import Button from '../components/Button'
-import Input from '../components/Input'
+import NormalText, { BoldText } from '../../components/Text'
+import Button from '../../components/Button'
+import Input from '../../components/Input'
 
 const ResetPassword2 = ({ navigation }) => {
   return (
@@ -31,7 +31,7 @@ const ResetPassword2 = ({ navigation }) => {
             <View style={styles.imgcont}>
               <Image
                 style={styles.img}
-                source={require('../assets/images/Resetpass.png')}
+                source={require('../../assets/images/Resetpass.png')}
               />
               <TextInput
                 placeholder="olu"
@@ -71,7 +71,6 @@ const ResetPassword2 = ({ navigation }) => {
                     paddingHorizontal: 6,
                     marginRight: 10,
                   }}
-
                   KeyboardType="numeric"
                   maxLength={1}
                 />
@@ -114,7 +113,6 @@ const ResetPassword2 = ({ navigation }) => {
                     paddingHorizontal: 6,
                     marginRight: 10,
                   }}
-
                   KeyboardType="numeric"
                   maxLength={1}
                 />

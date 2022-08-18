@@ -3,11 +3,11 @@
 import axios from 'axios'
 import { AsyncStorage, Alert } from 'react-native'
 
-// import NavigationService from '../navigation/NavigationService'
+//import NavigationService from '../navigation/NavigationService'
 // import store from '../store'
 // import { SAVE_TOKEN } from '../types'
 
-const API_URL = 'http://localhost:5000/auth'
+const API_URL = 'https://foodhq.herokuapp.com/api/v1/'
 
 export const apiRequest = async (endpoint, method, body = {}, token) => {
   try {
