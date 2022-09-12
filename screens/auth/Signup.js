@@ -10,14 +10,18 @@ import {
   StyleSheet,
 } from 'react-native'
 import React, { useState } from 'react'
-import { SingleHeader } from '../../components/Header'
+import { useDispatch } from 'react-redux'
 import Toptext from '../../components/Toptext'
 import NormalText, { BoldText } from '../../components/Text'
 import Input from '../../components/Input'
+import { register } from '../../actions/auth'
 import { FontAwesome5 } from '@expo/vector-icons'
+import Button from '../../components/Button'
 
 const Signup = ({ navigation }) => {
+  const dispatch = useDispatch()
   const [data, setData] = useState({
+    name: '',
     email: '',
     password: '',
   })
@@ -27,6 +31,10 @@ const Signup = ({ navigation }) => {
       ...data,
       ...value,
     })
+  }
+
+  const handleRegister = () => {
+    dispatch(register(data))
   }
 
   return (
@@ -47,11 +55,29 @@ const Signup = ({ navigation }) => {
               <Toptext />
             </View>
             <View style={styles.form}>
-              <Input placeholder="Name of Hospital/Lab" />
+              {/* <Input placeholder="Name of Hospital/Lab" />
               <Input placeholder="Location" />
               <Input placeholder="Email Address" />
               <Input placeholder="Password" />
-              <Input placeholder="Confirm password" />
+            <Input placeholder="Confirm password" /> */}
+              <Input
+                value={data.name}
+                onChangeText={(name) => handleInput({ name })}
+                placeholder="Name"
+                coverStyle={{}}
+              />
+              <Input
+                value={data.email}
+                onChangeText={(email) => handleInput({ email })}
+                placeholder="Email Address"
+                coverStyle={{}}
+              />
+              <Input
+                value={data.password}
+                onChangeText={(password) => handleInput({ password })}
+                placeholder="Password"
+              />
+
               <View
                 style={{
                   flexDirection: 'row',
@@ -68,9 +94,7 @@ const Signup = ({ navigation }) => {
                   </NormalText>
                 </TouchableOpacity>
               </View>
-              <TouchableOpacity activeOpacity={0.5} style={styles.butcont}>
-                <Text style={styles.buttext}>REGISTER</Text>
-              </TouchableOpacity>
+              <Button onPress={handleRegister}>REGISTER</Button>
             </View>
           </ScrollView>
         </TouchableWithoutFeedback>

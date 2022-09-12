@@ -2,6 +2,7 @@ import {
   StyleSheet,
   TextInput,
   Image,
+  Dimensions,
   TouchableOpacity,
   View,
 } from 'react-native'
@@ -11,42 +12,47 @@ import { CartContext } from '../Util/Cartcontext'
 import { AntDesign, FontAwesome5 } from '@expo/vector-icons'
 import Button from '../components/Button'
 
+const width = Dimensions.get('window').width
+const height = Dimensions.get('window').height
+
 const Search = ({ navigation }) => {
   const { itemNumber1, setItemNumber1 } = useContext(CartContext)
   const { itemNumber2, setItemNumber2 } = useContext(CartContext)
 
   return (
     <View style={styles.container}>
-      <View style={styles.upper}>
+      <View style={styles.searchsection}>
         <View style={styles.uppertext}>
           <BoldText style={styles.toptext}>
             Search for blood types, lab info, med lab etc.
           </BoldText>
         </View>
-        <View style={styles.searchcont}>
+        <View style={styles.searchcontainer}>
           <AntDesign name="search1" size={20} color="white" />
           <TextInput
             style={styles.input}
             placeholderTextColor="grey"
             placeholder="Search for blood..."
           />
-          <FontAwesome5 name="sliders-h" size={24} color="white" />
+          <FontAwesome5 name="sliders-h" size={22} color="white" />
         </View>
       </View>
-      <NormalText style={styles.searchtext}>Search Result</NormalText>
+      <View style={styles.searchtextcontainer}>
+        <NormalText style={styles.searchtext}>Search Result</NormalText>
+      </View>
       <View style={styles.result}>
         <View style={styles.searchresult}>
-          <View style={styles.left}>
+          <View style={styles.leftcontent}>
             <Image
-              style={styles.img}
+              style={styles.leftimage}
               source={require('../assets/images/Search1.png')}
             />
-            <View style={styles.textcont}>
-              <NormalText>Price</NormalText>
-              <NormalText>N150000.00</NormalText>
+            <View style={styles.price}>
+              <NormalText style={{ fontSize: 12 }}>Price</NormalText>
+              <NormalText style={{ fontSize: 12 }}>N150000.00</NormalText>
             </View>
-            <View style={styles.ltextcont}>
-              <NormalText>Amount</NormalText>
+            <View style={styles.amountcontainer}>
+              <NormalText style={{ fontSize: 12 }}>Amount</NormalText>
               <View style={styles.logic}>
                 <TouchableOpacity
                   onPress={() =>
@@ -61,7 +67,7 @@ const Search = ({ navigation }) => {
                 >
                   <AntDesign name="minuscircle" size={15} color="white" />
                 </TouchableOpacity>
-                <NormalText style={{ paddingHorizontal: 4 }}>
+                <NormalText style={{ paddingHorizontal: 7, fontSize: 14 }}>
                   {itemNumber2}
                 </NormalText>
                 <TouchableOpacity
@@ -72,13 +78,19 @@ const Search = ({ navigation }) => {
               </View>
             </View>
           </View>
-          <View style={styles.right}>
-            <NormalText style={{ color: 'grey' }}>Info</NormalText>
-            <NormalText>Lab: Assured Life</NormalText>
-            <NormalText>Blood type: O+</NormalText>
-            <NormalText>Can donate to: O+ b+ A+ AB+</NormalText>
-            <NormalText>Can receive from O+ 0-</NormalText>
-            <NormalText>Pints available: 6</NormalText>
+          <View style={styles.rightcontent}>
+            <NormalText style={{ color: 'grey', fontSize: 12 }}>
+              Info
+            </NormalText>
+            <NormalText style={{ fontSize: 12 }}>Lab: Assured Life</NormalText>
+            <NormalText style={{ fontSize: 12 }}>Blood type: O+</NormalText>
+            <NormalText style={{ fontSize: 12 }}>
+              Can donate to: O+ b+ A+
+            </NormalText>
+            <NormalText style={{ fontSize: 12 }}>
+              Can receive from O+ 0-
+            </NormalText>
+            <NormalText style={{ fontSize: 12 }}>Pints available: 6</NormalText>
             <Button
               onPress={() => navigation.navigate('Cart')}
               style={{ width: 100, height: 26, fontSize: 8 }}
@@ -90,17 +102,17 @@ const Search = ({ navigation }) => {
       </View>
       <View style={styles.result}>
         <View style={styles.searchresult}>
-          <View style={styles.left}>
+          <View style={styles.leftcontent}>
             <Image
-              style={styles.img}
+              style={styles.leftimage}
               source={require('../assets/images/Search2.png')}
             />
-            <View style={styles.textcont}>
-              <NormalText>Price</NormalText>
-              <NormalText>N150000.00</NormalText>
+            <View style={styles.price}>
+              <NormalText style={{ fontSize: 12 }}>Price</NormalText>
+              <NormalText style={{ fontSize: 12 }}>N150000.00</NormalText>
             </View>
-            <View style={styles.ltextcont}>
-              <NormalText>Amount</NormalText>
+            <View style={styles.amountcontainer}>
+              <NormalText style={{ fontSize: 12 }}>Amount</NormalText>
               <View style={styles.logic}>
                 <TouchableOpacity
                   onPress={() =>
@@ -115,7 +127,7 @@ const Search = ({ navigation }) => {
                 >
                   <AntDesign name="minuscircle" size={15} color="white" />
                 </TouchableOpacity>
-                <NormalText style={{ paddingHorizontal: 4 }}>
+                <NormalText style={{ paddingHorizontal: 7, fontSize: 14 }}>
                   {itemNumber1}
                 </NormalText>
                 <TouchableOpacity
@@ -126,13 +138,21 @@ const Search = ({ navigation }) => {
               </View>
             </View>
           </View>
-          <View style={styles.right}>
-            <NormalText style={{ color: 'grey' }}>Info</NormalText>
-            <NormalText>Lab: Perry's lab</NormalText>
-            <NormalText>Blood type: A+</NormalText>
-            <NormalText>Can donate to: A+ AB+</NormalText>
-            <NormalText>Can receive from: A+ A- O+ 0-</NormalText>
-            <NormalText>Pints available: l8</NormalText>
+          <View style={styles.rightcontent}>
+            <NormalText style={{ color: 'grey', fontSize: 12 }}>
+              Info
+            </NormalText>
+            <NormalText style={{ fontSize: 12 }}>Lab: Perry's lab</NormalText>
+            <NormalText style={{ fontSize: 12 }}>Blood type: A+</NormalText>
+            <NormalText style={{ fontSize: 12 }}>
+              Can donate to: A+ AB+
+            </NormalText>
+            <NormalText style={{ fontSize: 12 }}>
+              Can receive from: A+ A- O+
+            </NormalText>
+            <NormalText style={{ fontSize: 12 }}>
+              Pints available: l8
+            </NormalText>
             <Button
               onPress={() => navigation.navigate('Cart')}
               style={{ width: 100, height: 26, fontSize: 8 }}
@@ -142,27 +162,27 @@ const Search = ({ navigation }) => {
           </View>
         </View>
       </View>
-      <View style={{ alignItems: 'center', marginVertical: 50 }}>
-        <NormalText>Load more......</NormalText>
+      <View style={{ alignItems: 'center', marginVertical: 30 }}>
+        <NormalText style={{ fontSize: 15 }}>Load more......</NormalText>
       </View>
-      <View style={styles.cont}>
-        <View style={styles.singlecont}>
+      <View style={styles.lowercontainer}>
+        <View style={styles.singlecontent}>
           <Image
-            style={styles.contimg}
+            style={styles.contentimg}
             source={require('../assets/images/Search4.png')}
           />
           <NormalText>Total available pints</NormalText>
         </View>
-        <View style={styles.singlecont}>
+        <View style={styles.singlecontent}>
           <Image
-            style={styles.contimg}
+            style={styles.contentimg}
             source={require('../assets/images/Search5.png')}
           />
           <NormalText>All Available Blood Groups</NormalText>
         </View>
-        <View style={styles.singlecont}>
+        <View style={styles.singlecontent}>
           <Image
-            style={styles.contimg}
+            style={styles.contentimg}
             source={require('../assets/images/Search6.png')}
           />
           <NormalText>Manual Search</NormalText>
@@ -179,33 +199,37 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#0a1e30',
   },
-  upper: {
+  searchsection: {
     alignItems: 'center',
   },
   uppertext: {
     marginTop: 50,
   },
   toptext: {
-    fontSize: 20,
+    fontSize: 17,
   },
-  searchcont: {
+  searchtextcontainer: {
+    alignItems: 'center',
+  },
+  searchcontainer: {
     flexDirection: 'row',
     backgroundColor: '#122332',
-    width: 372,
+    width: '90%',
     marginTop: 20,
     height: 40,
-    paddingHorizontal: 15,
+    paddingHorizontal: 20,
     alignItems: 'center',
   },
   input: {
     marginHorizontal: 10,
-    width: 270,
+    width: '80%',
     color: '#ffffff',
-    paddingLeft: 20,
+    paddingLeft: 4,
     fontSize: 20,
   },
   searchtext: {
     marginTop: 20,
+    fontSize: 15,
     marginLeft: 20,
   },
   result: {
@@ -215,19 +239,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: '#122332',
-    width: 387,
-    height: 166,
+    width: '90%',
+    height: 200,
     paddingTop: 20,
     marginTop: 20,
-    paddingHorizontal: 55,
+    paddingHorizontal: 25,
   },
-  img: {
-    width: 90,
+  leftimage: {
+    width: 120,
     height: 90,
     borderWidth: 1,
     borderColor: 'black',
   },
-  textcont: {
+  price: {
     flexDirection: 'row',
     marginVertical: 10,
     justifyContent: 'space-between',
@@ -235,28 +259,29 @@ const styles = StyleSheet.create({
   right: {
     paddingTop: 5,
   },
-  ltextcont: {
+  amountcontainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   logic: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
-  cont: {
+  lowercontainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 15,
   },
-  singlecont: {
+  singlecontent: {
     backgroundColor: '#122332',
     height: 130,
     width: 120,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  contimg: {
-    marginBottom: 12,
+  contentimg: {
+    marginBottom: 13,
   },
 })

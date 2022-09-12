@@ -29,13 +29,13 @@ export const loading = (data) => ({
 
 export const login = (user) => (dispatch) => {
   dispatch(loading(true))
-  apiRequest('auth/login/', 'POST', user)
+  apiRequest('api/auth/login/', 'POST', user)
     .then(({ data }) => {
-      console.log('login details', data)
-      if (data.error) {
-        console.log('data error')
+      if (!data) {
+        Alert.alert(`Kindly input login details`)
       }
       dispatch(saveUser(data))
+      Alert.alert(`login successful`)
     })
     .catch((err) => {
       showApiError(err, true, () => dispatch(login(user)))
@@ -44,29 +44,53 @@ export const login = (user) => (dispatch) => {
       dispatch(loading(false))
     })
 }
-
-export const signup = (user) => (dispatch) => {
+export const register = (createUser) => (dispatch) => {
   dispatch(loading(true))
-
-  apiRequest('/register', 'POST', data)
+  apiRequest('api/auth/register/', 'POST', createUser)
     .then(({ data }) => {
-      console.log('login', data)
-      //   const {
-      //     data: {
-      //       expiresIn,
-      //       token: accessToken,
-      //       refreshToken,
-      //       user: userData,
-      //     },
-      //   } = data
-      dispatch(saveUser(userData))
-      NavigationService.navigate('Login')
+      if (!data) {
+        Alert.alert(`Kindly input login details`)
+      }
+      dispatch(regUser(data))
+      Alert.alert(`signup successful`)
+      console.log(data)
     })
     .catch((err) => {
-      f
-      showApiError(err, true, () => dispatch(login(user)))
+      showApiError(err, true, () => dispatch(register(createUser)))
     })
     .finally(() => {
       dispatch(loading(false))
     })
 }
+
+// export const login = (user) => (dispatch) => {
+//   dispatch({
+//     type: LOADING,
+//     payload: true,
+//   })
+
+//   apiRequest('/users/login', 'post', user)
+//     .then(({ data }) => {
+//       console.log('login', data)
+
+//       const {
+//         data: {
+//           expiresIn,
+//           token: accessToken,
+//           refreshToken,
+//           user: userData,
+//         },
+//       } = data
+//       dispatch(saveUser({ expiresIn, accessToken, refreshToken }, userData))
+//       NavigationService.navigate('Home')
+//     })
+//     .catch((err) => {
+//       showApiError(err, true, () => dispatch(login(user)))
+//     })
+//     .finally(() => {
+//       dispatch({
+//         type: LOADING,
+//         payload: false,
+//       })
+//     })
+// }

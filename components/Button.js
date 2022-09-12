@@ -14,10 +14,10 @@ const Button = ({
     <TouchableOpacity
       onPress={onPress}
       style={{
-        height: 38,
-        width: 386,
         alignItems: 'center',
         justifyContent: 'center',
+        height: 50,
+        width: 335,
         borderWidth: 1,
         borderColor: '#fff',
         backgroundColor: '#D33A39',
@@ -28,7 +28,7 @@ const Button = ({
       <Text
         style={{
           color: 'white',
-          fontSize: 18,
+          fontSize: 15,
           ...textStyle,
         }}
       >

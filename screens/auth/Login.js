@@ -1,5 +1,6 @@
 import {
   View,
+  SafeAreaView,
   Text,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
@@ -10,13 +11,13 @@ import {
   StyleSheet,
 } from 'react-native'
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { SingleHeader } from '../../components/Header'
+import { useDispatch } from 'react-redux'
 import Toptext from '../../components/Toptext'
-import NormalText, { BoldText } from '../../components/Text'
+import NormalText from '../../components/Text'
 import Input from '../../components/Input'
 import { login } from '../../actions/auth'
 import { FontAwesome5 } from '@expo/vector-icons'
+import Button from '../../components/Button'
 
 const Login = ({ navigation }) => {
   const dispatch = useDispatch()
@@ -32,8 +33,12 @@ const Login = ({ navigation }) => {
     })
   }
 
+  const handleLigin = () => {
+    dispatch(login(data))
+    navigation.navigate('Home')
+  }
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === 'ios' ? 'padding' : null}
@@ -46,10 +51,10 @@ const Login = ({ navigation }) => {
               flex: 1,
             }}
           >
-            <View style={styles.toptext}>
+            <View style={styles.head}>
               <Toptext />
             </View>
-            <View style={styles.form}>
+            <View style={styles.formcontainer}>
               <Input
                 value={data.email}
                 onChangeText={(email) => handleInput({ email })}
@@ -64,28 +69,22 @@ const Login = ({ navigation }) => {
 
               <TouchableOpacity
                 onPress={() => navigation.navigate('ResetPassword1')}
-                style={styles.pascont}
+                style={styles.forgotpasscont}
               >
-                <Text style={styles.pas}>Forgot Password?</Text>
+                <Text style={styles.passtext}>Forgot Password?</Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => {
-                  dispatch(login(data))
-                  navigation.navigate('Home')
-                }}
-                activeOpacity={0.5}
-                style={styles.butcont}
-              >
-                <Text style={styles.buttext}>SIGN IN</Text>
-              </TouchableOpacity>
-              <View style={styles.lncont}>
-                <View style={styles.leftln}></View>
-                <Text style={styles.lntext}>OR</Text>
-                <View style={styles.rightln}></View>
+
+              <Button style={{ borderRadius: 30 }} onPress={handleLigin}>
+                SIGN IN
+              </Button>
+              <View style={styles.linecontainer}>
+                <View style={styles.line}></View>
+                <Text style={styles.linetext}>OR</Text>
+                <View style={styles.line}></View>
               </View>
               <View style={styles.iconcont}></View>
             </View>
-            <View style={styles.smlinks}>
+            <View style={styles.linkscontainer}>
               <TouchableOpacity style={styles.icon}>
                 <FontAwesome5 name="twitter-square" size={34} color="#1C7ED6" />
               </TouchableOpacity>
@@ -117,7 +116,7 @@ const Login = ({ navigation }) => {
           </ScrollView>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
-    </View>
+    </SafeAreaView>
   )
 }
 
@@ -125,61 +124,37 @@ export default Login
 
 const styles = StyleSheet.create({
   container: {
-    height: '100%',
-    width: '100%',
+    flex: 1,
     backgroundColor: '#122332',
-    paddingTop: 30,
   },
-
-  toptext: { marginTop: 70 },
-  form: {
-    paddingTop: 60,
+  formcontainer: {
+    paddingTop: 10,
   },
-  pascont: {
+  forgotpasscont: {
     alignItems: 'center',
-    marginVertical: 30,
+    marginVertical: 18,
   },
-  pas: {
+  passtext: {
     color: '#FFFFFF',
     fontSize: 15,
     fontWeight: '400',
   },
-  butcont: {
-    borderWidth: 1,
-    marginTop: 20,
-    borderColor: '#FFFFFF',
-    borderRadius: 30,
-    backgroundColor: '#D33A39',
-    justifyContent: 'center',
-    height: 50,
-  },
-  buttext: {
-    color: '#FFFFFF',
-    textAlign: 'center',
-  },
-  lncont: {
-    marginVertical: 10,
-    paddingVertical: 30,
+  linecontainer: {
+    paddingVertical: 25,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
   },
-  leftln: {
+  line: {
     borderWidth: 0.5,
-    width: '90%',
     borderColor: '#9ba0a8',
-    width: 140,
+    width: '38%',
   },
-  lntext: {
+  linetext: {
     color: '#9ba0a8',
     fontSize: 20,
   },
-  rightln: {
-    borderWidth: 0.5,
-    borderColor: '#9ba0a8',
-    width: 140,
-  },
-  smlinks: {
+  linkscontainer: {
     flexDirection: 'row',
   },
   icon: {

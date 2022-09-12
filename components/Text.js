@@ -12,6 +12,7 @@ const Text = ({ style = {}, children, ...props }) => {
       style={{
         fontFamily: 'DMSansRegular',
         color: 'white',
+        fontSize: 15,
         lineHeight: (style?.fontSize ?? fontSize) * 1.5,
         ...styles,
         ...style,

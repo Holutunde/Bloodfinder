@@ -7,7 +7,7 @@ import { AsyncStorage, Alert } from 'react-native'
 // import store from '../store'
 // import { SAVE_TOKEN } from '../types'
 
-const API_URL = 'https://foodhq.herokuapp.com/api/v1/'
+const API_URL = 'https://job-api-99.herokuapp.com/'
 
 export const apiRequest = async (endpoint, method, body = {}, token) => {
   try {
