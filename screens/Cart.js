@@ -2,6 +2,7 @@ import {
   StyleSheet,
   TextInput,
   Image,
+  SafeAreaView,
   TouchableOpacity,
   View,
 } from 'react-native'
@@ -15,12 +16,12 @@ const Cart = ({ navigation }) => {
   const { addItemNumber } = useContext(CartContext)
 
   return (
-    <View style={styles.container}>
-      <View style={styles.upper}>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.uppercontent}>
         <View style={styles.uppertext}>
           <BoldText style={styles.toptext}>Shopping Cart</BoldText>
         </View>
-        <View style={styles.searchcont}>
+        <View style={styles.cartdetails}>
           <NormalText style={{ fontSize: 22, marginHorizontal: 22 }}>
             Your cart
           </NormalText>
@@ -32,7 +33,7 @@ const Cart = ({ navigation }) => {
           <View style={styles.left}>
             <View style={styles.upperleft}>
               <Image
-                style={styles.img}
+                style={styles.upperleftimage}
                 source={require('../assets/images/Search1.png')}
               />
               <NormalText style={{ fontSize: 15, paddingLeft: 10 }}>
@@ -41,23 +42,29 @@ const Cart = ({ navigation }) => {
             </View>
             <View style={styles.lowerleft}>
               <Image
-                style={styles.lowerimg}
+                style={styles.lowerleftimage}
                 source={require('../assets/images/Search5.png')}
               />
             </View>
           </View>
-          <View style={styles.middle}>
-            <NormalText style={{ fontSize: 12 }}>Description</NormalText>
-            <NormalText style={{ marginTop: 10 }}>2 pints of O+</NormalText>
-            <NormalText style={{ marginTop: 5 }}>N30,000.00</NormalText>
-            <View style={styles.cont}>
-              <View style={styles.innercont}>
-                <FontAwesome5 name="edit" size={9} color="white" />
-                <NormalText style={{ marginLeft: 7 }}>Edit</NormalText>
+          <View style={styles.middlecontent}>
+            <NormalText style={{ fontSize: 13 }}>Description</NormalText>
+            <NormalText style={{ marginTop: 12, fontSize: 12 }}>
+              2 pints of O+
+            </NormalText>
+            <NormalText style={{ fontSize: 11 }}>N30,000.00</NormalText>
+            <View style={styles.allcontrol}>
+              <View style={styles.controls}>
+                <FontAwesome5 name="edit" size={11} color="white" />
+                <NormalText style={{ marginLeft: 7, fontSize: 11 }}>
+                  Edit
+                </NormalText>
               </View>
-              <View style={styles.innercont}>
-                <FontAwesome5 name="remove-format" size={9} color="white" />
-                <NormalText style={{ marginLeft: 7 }}>Remove</NormalText>
+              <View style={styles.controls}>
+                <FontAwesome5 name="remove-format" size={11} color="white" />
+                <NormalText style={{ marginLeft: 7, fontSize: 11 }}>
+                  Remove
+                </NormalText>
               </View>
             </View>
           </View>
@@ -69,7 +76,7 @@ const Cart = ({ navigation }) => {
           <View style={styles.left}>
             <View style={styles.upperleft}>
               <Image
-                style={styles.img}
+                style={styles.upperleftimage}
                 source={require('../assets/images/Search1.png')}
               />
               <NormalText style={{ fontSize: 15, paddingLeft: 10 }}>
@@ -78,23 +85,29 @@ const Cart = ({ navigation }) => {
             </View>
             <View style={styles.lowerleft}>
               <Image
-                style={styles.lowerimg}
+                style={styles.lowerleftimage}
                 source={require('../assets/images/Search5.png')}
               />
             </View>
           </View>
-          <View style={styles.middle}>
-            <NormalText style={{ fontSize: 12 }}>Description</NormalText>
-            <NormalText style={{ marginTop: 10 }}>2 pints of AB+</NormalText>
-            <NormalText style={{ marginTop: 5 }}>N30,000.00</NormalText>
-            <View style={styles.cont}>
-              <View style={styles.innercont}>
-                <FontAwesome5 name="edit" size={9} color="white" />
-                <NormalText style={{ marginLeft: 7 }}>Edit</NormalText>
+          <View style={styles.middlecontent}>
+            <NormalText style={{ fontSize: 13 }}>Description</NormalText>
+            <NormalText style={{ marginTop: 12, fontSize: 12 }}>
+              2 pints of O+
+            </NormalText>
+            <NormalText style={{ fontSize: 11 }}>N30,000.00</NormalText>
+            <View style={styles.allcontrol}>
+              <View style={styles.controls}>
+                <FontAwesome5 name="edit" size={11} color="white" />
+                <NormalText style={{ marginLeft: 7, fontSize: 11 }}>
+                  Edit
+                </NormalText>
               </View>
-              <View style={styles.innercont}>
-                <FontAwesome5 name="remove-format" size={9} color="white" />
-                <NormalText style={{ marginLeft: 7 }}>Remove</NormalText>
+              <View style={styles.controls}>
+                <FontAwesome5 name="remove-format" size={11} color="white" />
+                <NormalText style={{ marginLeft: 7, fontSize: 11 }}>
+                  Remove
+                </NormalText>
               </View>
             </View>
           </View>
@@ -104,24 +117,26 @@ const Cart = ({ navigation }) => {
         </View>
       </View>
       <View style={styles.lower}>
-        <View style={styles.acct}>
-          <View style={styles.leftacct}>
+        <View style={styles.ordersummary}>
+          <View style={styles.chargestitle}>
             <BoldText>Sub-total</BoldText>
             <BoldText>Value Added Tax(VAT)</BoldText>
             <BoldText>Delivery Charges</BoldText>
             <BoldText style={{ color: '#D33A39' }}>Order Total</BoldText>
           </View>
-          <View style={styles.rightacct}>
+          <View style={styles.chargesprice}>
             <BoldText>N75,000.00</BoldText>
             <BoldText>N5.00</BoldText>
             <BoldText>N2000.00</BoldText>
-            <BoldText>N77,005.00</BoldText>
+            <BoldText>N77,010.00</BoldText>
           </View>
         </View>
         <View style={styles.footer}>
-          <View style={styles.footertxt}>
-            <NormalText>{addItemNumber} Items on cart</NormalText>
-            <NormalText>N77,005.00</NormalText>
+          <View style={styles.footertext}>
+            <NormalText style={{ fontSize: 14 }}>
+              {addItemNumber} Items on cart
+            </NormalText>
+            <NormalText style={{ fontSize: 12 }}>N77,010.00</NormalText>
           </View>
 
           <Button
@@ -132,7 +147,7 @@ const Cart = ({ navigation }) => {
           </Button>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   )
 }
 
@@ -143,53 +158,43 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#0a1e30',
   },
-  upper: {
+  uppercontent: {
     alignItems: 'center',
   },
   uppertext: {
-    marginTop: 70,
+    marginTop: 10,
   },
   toptext: {
     fontSize: 24,
   },
-  searchcont: {
+  cartdetails: {
     flexDirection: 'row',
     backgroundColor: '#122332',
-    width: 378,
-    marginTop: 30,
+    width: '90%',
+    marginTop: 35,
     height: 62,
     paddingHorizontal: 15,
     alignItems: 'center',
-  },
-  input: {
-    marginHorizontal: 10,
-    width: 270,
-    color: '#ffffff',
-    paddingLeft: 20,
-    fontSize: 20,
   },
   cart: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: '#122332',
-    width: 378,
+    width: '90%',
     marginTop: 20,
-    height: 110,
+    height: 140,
     paddingHorizontal: 15,
     paddingTop: 10,
   },
-  left: {},
-  leftcont: {},
   upperleft: {
     flexDirection: 'row',
   },
-  img: {
+  upperleftimage: {
     width: 24,
     height: 23,
     borderColor: 'black',
     borderWidth: 0.5,
   },
-
   lowerleft: {
     marginTop: 10,
     backgroundColor: '#04172A',
@@ -203,35 +208,33 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     elevation: 5,
   },
-  lowerimg: {
+  lowerleftimage: {
     width: 17,
     height: 22,
   },
-  middle: {
-    width: 100,
+  middlecontent: {
+    width: 120,
     marginTop: 5,
   },
-  cont: {
+  allcontrol: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 10,
   },
-  innercont: {
+  controls: {
     flexDirection: 'row',
   },
-  lower: {
-    marginTop: 80,
-  },
-  acct: {
+  ordersummary: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginHorizontal: 45,
+    marginVertical: 40,
   },
   footer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginHorizontal: 45,
-    marginTop: 122,
+    marginTop: 10,
   },
 })

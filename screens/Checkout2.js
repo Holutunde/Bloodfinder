@@ -47,7 +47,7 @@ const Checkout2 = ({ navigation }) => {
         <Button
           onPress={() => navigation.navigate('Checkout3')}
           style={{
-            width: 386,
+            width: '90%',
             height: 38,
             fontSize: 8,
           }}
@@ -114,6 +114,6 @@ const styles = StyleSheet.create({
   },
   footerbtn: {
     marginStart: 13,
-    marginTop: 250,
+    marginTop: 205,
   },
 })
