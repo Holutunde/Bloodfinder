@@ -5,6 +5,7 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
   ScrollView,
+  SafeAreaView,
   Keyboard,
   Platform,
   StyleSheet,
@@ -15,7 +16,6 @@ import Toptext from '../../components/Toptext'
 import NormalText, { BoldText } from '../../components/Text'
 import Input from '../../components/Input'
 import { register } from '../../actions/auth'
-import { FontAwesome5 } from '@expo/vector-icons'
 import Button from '../../components/Button'
 
 const Signup = ({ navigation }) => {
@@ -38,7 +38,7 @@ const Signup = ({ navigation }) => {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === 'ios' ? 'padding' : null}
@@ -81,7 +81,7 @@ const Signup = ({ navigation }) => {
               <View
                 style={{
                   flexDirection: 'row',
-                  paddingTop: 10,
+                  marginVertical: 10,
                   justifyContent: 'center',
                 }}
               >
@@ -94,12 +94,14 @@ const Signup = ({ navigation }) => {
                   </NormalText>
                 </TouchableOpacity>
               </View>
-              <Button onPress={handleRegister}>REGISTER</Button>
+              <Button style={{ borderRadius: 30 }} onPress={handleRegister}>
+                REGISTER
+              </Button>
             </View>
           </ScrollView>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
-    </View>
+    </SafeAreaView>
   )
 }
 
@@ -107,15 +109,11 @@ export default Signup
 
 const styles = StyleSheet.create({
   container: {
-    height: '100%',
-    width: '100%',
+    flex: 1,
     backgroundColor: '#122332',
-    paddingTop: 10,
   },
-
-  toptext: { marginTop: 70 },
   form: {
-    paddingTop: 60,
+    paddingTop: 15,
   },
   pascont: {
     alignItems: 'center',

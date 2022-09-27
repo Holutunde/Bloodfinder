@@ -33,7 +33,7 @@ const Login = ({ navigation }) => {
     })
   }
 
-  const handleLigin = () => {
+  const handleLogin = () => {
     dispatch(login(data))
     navigation.navigate('Home')
   }
@@ -74,7 +74,7 @@ const Login = ({ navigation }) => {
                 <Text style={styles.passtext}>Forgot Password?</Text>
               </TouchableOpacity>
 
-              <Button style={{ borderRadius: 30 }} onPress={handleLigin}>
+              <Button style={{ borderRadius: 30 }} onPress={handleLogin}>
                 SIGN IN
               </Button>
               <View style={styles.linecontainer}>

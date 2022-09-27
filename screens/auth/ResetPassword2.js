@@ -8,12 +8,17 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
 } from 'react-native'
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import NormalText, { BoldText } from '../../components/Text'
 import Button from '../../components/Button'
 import Input from '../../components/Input'
 
 const ResetPassword2 = ({ navigation }) => {
+  const firstInput = useRef()
+  const secondInput = useRef()
+  const thirdInput = useRef()
+  const fourthInput = useRef()
+  const [otp, setOtp] = useState({ 1: '', 2: '', 3: '', 4: '' })
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView
@@ -23,7 +28,6 @@ const ResetPassword2 = ({ navigation }) => {
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
           <ScrollView
             contentContainerStyle={{
-              alignItems: 'center',
               justifyContent: 'center',
               flex: 1,
             }}
@@ -33,103 +37,116 @@ const ResetPassword2 = ({ navigation }) => {
                 style={styles.img}
                 source={require('../../assets/images/Resetpass.png')}
               />
-              <TextInput
-                placeholder="olu"
-                maxLength={2}
-                keyboardType="numeric"
-              />
 
               <BoldText style={{ fontSize: 25, marginTop: 80 }}>
                 Forgot Password
               </BoldText>
               <NormalText style={{ width: 308, fontSize: 13, marginTop: 30 }}>
-                Enter the six- digit reset code sent to your mobile phone
+                Enter the four digit reset code sent to your mobile phone
               </NormalText>
-              <View style={styles.inputcont}>
+              <View style={styles.otpcontainer}>
                 <Input
                   style={{ color: '#FFFFFF' }}
-                  coverStyle={{
-                    backgroundColor: '#0a1e30',
-                    borderColor: 'grey',
-                    borderRadius: 0,
-                    width: 36,
-                    height: 29,
-                    paddingHorizontal: 6,
-                    marginRight: 10,
-                  }}
-                  KeyboardType="numeric"
+                  coverStyle={styles.otptext}
+                  keyboardType="number-pad"
                   maxLength={1}
+                  ref={firstInput}
+                  onChangeText={(text) => {
+                    setOtp({ ...otp, 1: text })
+                    text && secondInput.current.focus()
+                  }}
                 />
                 <Input
                   style={{ color: '#FFFFFF' }}
-                  coverStyle={{
-                    backgroundColor: '#0a1e30',
-                    borderColor: 'grey',
-                    borderRadius: 0,
-                    width: 36,
-                    height: 29,
-                    paddingHorizontal: 6,
-                    marginRight: 10,
-                  }}
-                  KeyboardType="numeric"
+                  coverStyle={styles.otptext}
+                  keyboardType="number-pad"
                   maxLength={1}
+                  ref={secondInput}
+                  onChangeText={(text) => {
+                    setOtp({ ...otp, 2: text })
+                    text
+                      ? thirdInput.current.focus()
+                      : firstInput.current.focus()
+                  }}
                 />
                 <Input
                   style={{ color: '#FFFFFF' }}
-                  coverStyle={{
-                    backgroundColor: '#0a1e30',
-                    borderColor: 'grey',
-                    borderRadius: 0,
-                    width: 36,
-                    height: 29,
-                    paddingHorizontal: 6,
-                    marginRight: 10,
-                  }}
-                  KeyboardType="numeric"
+                  coverStyle={styles.otptext}
+                  keyboardType="number-pad"
                   maxLength={1}
+                  ref={thirdInput}
+                  onChangeText={(text) => {
+                    setOtp({ ...otp, 3: text })
+                    text
+                      ? fourthInput.current.focus()
+                      : secondInput.current.focus()
+                  }}
                 />
                 <Input
                   style={{ color: '#FFFFFF' }}
-                  coverStyle={{
-                    backgroundColor: '#0a1e30',
-                    borderColor: 'grey',
-                    borderRadius: 0,
-                    width: 36,
-                    height: 29,
-                    paddingHorizontal: 6,
-                    marginRight: 10,
-                  }}
-                  KeyboardType="numeric"
+                  coverStyle={styles.otptext}
+                  keyboardType="number-pad"
                   maxLength={1}
-                />
-                <Input
-                  style={{ color: '#FFFFFF' }}
-                  coverStyle={{
-                    backgroundColor: '#0a1e30',
-                    borderColor: 'grey',
-                    borderRadius: 0,
-                    width: 36,
-                    height: 29,
-                    paddingHorizontal: 6,
-                    marginRight: 10,
+                  ref={fourthInput}
+                  onChangeText={(text) => {
+                    setOtp({ ...otp, 4: text })
+                    !text && thirdInput.current.focus()
                   }}
-                  KeyboardType="numeric"
-                  maxLength={1}
                 />
-                <Input
-                  style={{ color: '#FFFFFF' }}
-                  coverStyle={{
-                    backgroundColor: '#0a1e30',
-                    borderColor: 'grey',
-                    borderRadius: 0,
-                    width: 36,
-                    height: 29,
-                    paddingHorizontal: 6,
-                    marginRight: 10,
-                  }}
-                  KeyboardType="numeric"
-                  maxLength={1}
-                />
+              </View>
+              <View style={styles.otpContainer}>
+                <View style={styles.otpBox}>
+                  <TextInput
+                    style={styles.otpText}
+                    keyboardType="number-pad"
+                    maxLength={1}
+                    ref={firstInput}
+                    onChangeText={(text) => {
+                      setOtp({ ...otp, 1: text })
+                      text && secondInput.current.focus()
+                    }}
+                  />
+                </View>
+                <View style={styles.otpBox}>
+                  <TextInput
+                    style={styles.otpText}
+                    keyboardType="number-pad"
+                    maxLength={1}
+                    ref={secondInput}
+                    onChangeText={(text) => {
+                      setOtp({ ...otp, 2: text })
+                      text
+                        ? thirdInput.current.focus()
+                        : firstInput.current.focus()
+                    }}
+                  />
+                </View>
+                <View style={styles.otpBox}>
+                  <TextInput
+                    style={styles.otpText}
+                    keyboardType="number-pad"
+                    maxLength={1}
+                    ref={fourthInput}
+                    onChangeText={(text) => {
+                      setOtp({ ...otp, 4: text })
+                      !text && thirdInput.current.focus()
+                    }}
+                  />
+                </View>
+                <View style={styles.otpBox}>
+                  <TextInput
+                    style={styles.otpText}
+                    keyboardType="number-pad"
+                    maxLength={1}
+                    ref={thirdInput}
+                    onChangeText={(text) => {
+                      setOtp({ ...otp, 3: text })
+                      text
+                        ? fourthInput.current.focus()
+                        : secondInput.current.focus()
+                    }}
+                  />
+                </View>
               </View>
               <Button
                 textStyle={{
@@ -140,7 +157,6 @@ const ResetPassword2 = ({ navigation }) => {
                   width: 308,
                   height: 58,
                   borderColor: '#D33A39',
-                  marginTop: 40,
                 }}
                 onPress={() => navigation.navigate('ResetPassword3')}
               >
@@ -165,7 +181,37 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 90,
   },
-  inputcont: {
+
+  otpcontainer: {
+    flexDirection: 'row',
+    marginVertical: 10,
+  },
+  otptext: {
+    backgroundColor: '#0a1e30',
+    borderRadius: 5,
+    width: 50,
+    height: 38,
+    textAlign: 'center',
+    marginHorizontal: 10,
+  },
+  otpBox: {
+    borderRadius: 5,
+    borderColor: 'green',
+    borderWidth: 0.5,
+  },
+  otpText: {
+    fontSize: 25,
+    color: 'black',
+    padding: 0,
+    textAlign: 'center',
+    paddingHorizontal: 18,
+    paddingVertical: 10,
+  },
+  otpContainer: {
+    marginHorizontal: 20,
+    marginBottom: 20,
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
     flexDirection: 'row',
   },
 })
