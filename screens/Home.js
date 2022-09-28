@@ -20,8 +20,14 @@ const Home = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <View style={styles.topcontainer}>
         <View style={styles.leftcontent}>
-          <Feather name="menu" size={30} color="#ffffff" />
-          <NormalText style={{ fontSize: 20, paddingTop: 7 }}>Home</NormalText>
+          <TouchableOpacity onPress={() => navigation.openDrawer()}>
+            <Feather name="menu" size={30} color="#ffffff" />
+          </TouchableOpacity>
+          <NormalText
+            style={{ fontSize: 20, paddingTop: 5, paddingBottom: 10 }}
+          >
+            Home
+          </NormalText>
         </View>
         <View style={styles.rightcontent}>
           <FontAwesome name="bell" size={22} color="#ffffff" />
@@ -116,6 +122,7 @@ const styles = StyleSheet.create({
   },
   leftcontent: {
     width: 105,
+    paddingTop: 5,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -126,7 +133,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   herocontainer: {
-    marginTop: 30,
+    marginTop: 8,
     alignItems: 'center',
   },
   heroimage: {
