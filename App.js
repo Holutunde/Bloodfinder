@@ -1,16 +1,12 @@
 import { StatusBar } from 'expo-status-bar'
 import React from 'react'
 import { useFonts } from 'expo-font'
-import store from './store'
-import { Provider } from 'react-redux'
+import { Provider, useSelector } from 'react-redux'
+import createdStore from './store'
 import { StyleSheet, Text, View } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createDrawerNavigator } from '@react-navigation/drawer'
-import AuthStack from './Navigation/AuthStack'
 import { CartContextProvider } from './Util/Cartcontext'
-import DrawerContent from './screens/DrawerContent'
-import MainStack from './Navigation/MainStack'
-import Home from './screens/Home'
 import AppStack from './Navigation/AppStack'
 
 const customFonts = {
@@ -23,19 +19,15 @@ const customFonts = {
 }
 
 const Drawer = createDrawerNavigator()
-
+const store = createdStore()
 const App = () => {
   const [fontsLoaded] = useFonts(customFonts)
   return (
-    <CartContextProvider>
-      <NavigationContainer>
-        {fontsLoaded && (
-          <Provider store={store}>
-            <AppStack />
-          </Provider>
-        )}
-      </NavigationContainer>
-    </CartContextProvider>
+    <Provider store={store}>
+      <CartContextProvider>
+        <NavigationContainer>{fontsLoaded && <AppStack />}</NavigationContainer>
+      </CartContextProvider>
+    </Provider>
   )
 }
 

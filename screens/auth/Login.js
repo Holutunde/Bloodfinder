@@ -34,8 +34,11 @@ const Login = ({ navigation }) => {
   }
 
   const handleLogin = () => {
-    dispatch(login(data))
-    navigation.navigate('Home')
+    if (data.email != '' && data.password != '') {
+      console.log(data)
+      dispatch(login(data))
+      // navigation.navigate('Drawer')
+    }
   }
   return (
     <SafeAreaView style={styles.container}>
