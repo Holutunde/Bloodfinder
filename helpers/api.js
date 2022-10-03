@@ -31,23 +31,21 @@ export const apiRequest = async (endpoint, method, body = {}, token) => {
   }
 }
 
-export const showApiError = (
-  err,
-  tryAgain = true,
-  tryAgainFunc = null,
-  tryAgainText = 'Try Again',
-  title = '',
-) => {
+export const showApiError = (err, title = 'Error') => {
+  // console.log("Error Received in Function", err);
+  // Alert.alert(title, err, [
+  // 	{ text: "Dismiss", onPress: () => console.log("OK Pressed") },
+  // ]);
   const message =
-    err.response?.data?.message || err.response?.data?.detail || err.message
+    err.name == undefined || err.response?.data
+      ? `${Object.values(err.response.data)[0]}`
+      : err.response?.data?.error || err.response?.data?.error || err.message
 
-  if (message && err.response?.status !== 401) {
+  // if (message && err.response?.status !== 401) {
+  console.log('This is the error message: ' + message)
+  if (message) {
     Alert.alert(title, message, [
-      { text: 'Dismiss' },
-      tryAgain && {
-        text: tryAgainText,
-        onPress: tryAgainFunc,
-      },
+      { text: 'Dismiss', onPress: () => console.log('OK Pressed') },
     ])
   }
 }

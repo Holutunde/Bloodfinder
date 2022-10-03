@@ -1,8 +1,8 @@
-import { AsyncStorage } from 'react-native'
 import {
   SAVE_TOKEN,
   SIGN_OUT,
   SAVE_USER,
+  UPDATE_SIGNED_IN_STATUS,
   GET_CURRENT_USER,
   REG_USER,
   LOADING,
@@ -16,27 +16,29 @@ const initialState = {
     password: '',
     role: '',
   },
-  user: {
+  userData: {
     email: '',
     password: '',
   },
   token: null,
   isLoading: false,
+  signedStatus: false,
 }
 
-const authReducer = (state = initialState, { type, payload }) => {
+export const reducer = (state = initialState, { type, payload }) => {
+  console.log(type)
   switch (type) {
     case REG_USER:
       return {
         ...state,
-        regData: { ...payload },
+        regData: payload,
       }
-
+    case UPDATE_SIGNED_IN_STATUS:
+      return { ...state, signedStatus: payload }
     case SAVE_USER:
-      //AsyncStorage.setItem('user', JSON.stringify(payload))
       return {
         ...state,
-        user: payload,
+        userData: payload,
       }
     case LOADING:
       return { ...state, isLoading: payload }
@@ -44,5 +46,3 @@ const authReducer = (state = initialState, { type, payload }) => {
       return state
   }
 }
-
-export default authReducer

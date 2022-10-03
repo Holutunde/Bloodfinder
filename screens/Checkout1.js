@@ -34,16 +34,25 @@ const Checkout1 = ({ navigation }) => {
     })
   }
   const addAddress = () => {
-    data.id = uuid.v4()
-    const newAdd = [data, ...addressbox]
+    //data.id = uuid.v4()
+    const newAdd = [...addressbox, data]
+    setData('')
     setAddressbox(newAdd)
     setModalOpen(false)
   }
-  const rmAddress = ({ id }) => {
-    //const id = 'c43067e9-09cc-4d09-a4a0-dbc7841235f6'
-    const filtered = addressbox.filter((data) => data.id !== id)
-    console.log(filtered)
-    setAddressbox(filtered)
+  const rmAddress = (id) => {
+    let newArray = [...addressbox]
+    const index = newArray.findIndex((item) => item.id === id)
+    if (index !== -1) {
+      newArray.splice(index, 1)
+      setAddressbox(newArray)
+    }
+    // const spread = [...addressbox]
+    // spread.splice(index, 1)
+    // setAddressbox(spread)
+    // // const deleteId = index
+    // console.log(deleteId)
+    // setAddressbox(() => addressbox.filter((item) => item !== index))
   }
   return (
     <SafeAreaView style={styles.container}>
@@ -107,7 +116,7 @@ const Checkout1 = ({ navigation }) => {
 
       <FlatList
         data={addressbox}
-        renderItem={({ item }) => (
+        renderItem={({ item, index }) => (
           <View style={{ alignItems: 'center' }}>
             <View style={styles.addresscontent}>
               <View style={styles.topcont}>
@@ -119,7 +128,7 @@ const Checkout1 = ({ navigation }) => {
                     Work
                   </BoldText>
                 </View>
-                <TouchableOpacity onPress={rmAddress}>
+                <TouchableOpacity onPress={() => rmAddress(index)}>
                   <AntDesign name="delete" size={20} color="white" />
                 </TouchableOpacity>
               </View>
@@ -159,7 +168,7 @@ const Checkout1 = ({ navigation }) => {
             </View>
           </View>
         )}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item, index) => index.toString()}
       />
 
       <View style={styles.footerbtn}>
@@ -217,7 +226,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#122332',
     width: '90%',
     justifyContent: 'center',
-    height: '80%',
+    height: 180,
     marginVertical: 20,
     paddingTop: 10,
     paddingLeft: 10,

@@ -1,47 +1,31 @@
 import React from 'react'
-import { createDrawerNavigator } from '@react-navigation/drawer'
-import Ionicons from 'react-native-vector-icons/Ionicons'
-import CustomDrawer from '../components/CustomDrawer'
+import { View } from 'react-native'
+import { connect, useSelector } from 'react-redux'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import AuthStack from './AuthStack'
+import DrawerStack from './DrawerStack'
 
-import Home from '../screens/Home'
-import Order from '../screens/Order'
-import Delivery from '../screens/Delivery'
-import Thank from '../screens/Thank'
-import MainStackScreens from './MainStack'
+const Container = createNativeStackNavigator()
 
-const Drawer = createDrawerNavigator()
+const AppStack = (props) => {
+  //const { signedStatus } = useSelector((state) => state.reducers)
+  console.log(props.signedStatus)
 
-const AppStack = () => {
   return (
-    <Drawer.Navigator
-      drawerContent={(props) => <CustomDrawer {...props} />}
-      screenOptions={{
-        headerShown: false,
-        //drawerActiveBackgroundColor: '#364555',
-        drawerActiveTintColor: '#122332',
-        // drawerInactiveTintColor: '#333',
-        drawerLabelStyle: {
-          fontSize: 20,
-          color: '#E9E2E2',
-          marginTop: 20,
-          paddingLeft: 20,
-        },
-      }}
-    >
-      <Drawer.Screen
-        name="MainStack"
-        component={MainStackScreens}
-        // options={{
-        //   drawerIcon: ({ color }) => (
-        //     <Ionicons name="home-outline" size={22} color={color} />
-        //   ),
-        // }}
-      />
-      <Drawer.Screen name="Track Order" component={Order} />
-      <Drawer.Screen name="Confirm Delivery" component={Delivery} />
-      <Drawer.Screen name="Settings" component={Thank} />
-    </Drawer.Navigator>
+    <Container.Navigator screenOptions={{ headerShown: false }}>
+      {props.signedStatus ? (
+        <Container.Screen name="Drawer" component={DrawerStack} />
+      ) : (
+        <Container.Screen name="Auth" component={AuthStack} />
+      )}
+    </Container.Navigator>
   )
 }
 
-export default AppStack
+const mapStateToProps = (state) => {
+  return {
+    signedStatus: state.reducers.signedStatus,
+  }
+}
+
+export default connect(mapStateToProps, null)(AppStack)

@@ -15,7 +15,7 @@ const MainStack = createNativeStackNavigator()
 const MainStackScreens = ({ navigation }) => {
   return (
     <MainStack.Navigator screenOptions={{ headerShown: false }}>
-      <MainStack.Screen name="Home" component={Home} />
+      <MainStack.Screen name="HomeScreen" component={Home} />
       <MainStack.Screen name="Search" component={Search} />
       <MainStack.Screen name="Cart" component={Cart} />
       <MainStack.Screen name="Checkout1" component={Checkout1} />
