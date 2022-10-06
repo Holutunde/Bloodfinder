@@ -18,6 +18,7 @@ import Input from '../../components/Input'
 import { login } from '../../actions/auth'
 import { FontAwesome5 } from '@expo/vector-icons'
 import Button from '../../components/Button'
+import { saveAsyncData } from '../../helpers/storage'
 
 const Login = ({ navigation }) => {
   const dispatch = useDispatch()
@@ -36,8 +37,8 @@ const Login = ({ navigation }) => {
   const handleLogin = () => {
     if (data.email != '' && data.password != '') {
       console.log(data)
+      saveAsyncData('alreadyLoggedin', true)
       dispatch(login(data))
-      // navigation.navigate('Drawer')
     }
   }
   return (

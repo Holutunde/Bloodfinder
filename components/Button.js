@@ -16,7 +16,7 @@ const Button = ({
       style={{
         alignItems: 'center',
         justifyContent: 'center',
-        height: 50,
+        height: 60,
         width: 335,
         borderWidth: 1,
         borderColor: '#fff',

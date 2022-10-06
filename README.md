@@ -13,6 +13,7 @@ A Bloodfinder Mobile application created using [**React Native**](https://reactn
 - [Redux Thunk](https://github.com/reduxjs/redux-thunk 'Redux Thunk for Async State Management')
 
 ## UI Design
+
 [**Bloodfinder figma design** ](https://www.figma.com/file/FIEuvJ6BFIKPFDuO32Zosp/BloodHQ?node-id=1010%3A59)
 
 ## Setup instructions
@@ -21,6 +22,7 @@ A Bloodfinder Mobile application created using [**React Native**](https://reactn
 
 ```sh
 # Clone the app
+
 git clone https://github.com/Holutunde/Bloodfinder.git
 ```
 
@@ -28,6 +30,7 @@ git clone https://github.com/Holutunde/Bloodfinder.git
 
 ```sh
 # navigate to app directory
+
 cd Bloodfinder
 
 npm install

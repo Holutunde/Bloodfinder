@@ -48,12 +48,11 @@ const ResetPassword1 = ({ navigation }) => {
                 coverStyle={{
                   backgroundColor: '#0a1e30',
                   width: 308,
-                  height: 58,
                   paddingLeft: 20,
                 }}
                 placeholder="Phone number"
                 LeftIcon={() => (
-                  <AntDesign name="phone" size={17} color="white" />
+                  <AntDesign name="phone" size={20} color="white" />
                 )}
               />
               <Button
@@ -63,7 +62,7 @@ const ResetPassword1 = ({ navigation }) => {
                 style={{
                   borderRadius: 30,
                   width: 308,
-                  height: 58,
+                  height: 60,
                   borderColor: '#D33A39',
                 }}
                 onPress={() => navigation.navigate('ResetPassword2')}

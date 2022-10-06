@@ -3,6 +3,7 @@ import {
   SIGN_OUT,
   SAVE_USER,
   UPDATE_SIGNED_IN_STATUS,
+  UPDATE_INTRO_STATUS,
   GET_CURRENT_USER,
   REG_USER,
   LOADING,
@@ -20,13 +21,13 @@ const initialState = {
     email: '',
     password: '',
   },
+  startStatus: false,
   token: null,
   isLoading: false,
   signedStatus: false,
 }
 
 export const reducer = (state = initialState, { type, payload }) => {
-  console.log(type)
   switch (type) {
     case REG_USER:
       return {
@@ -35,6 +36,8 @@ export const reducer = (state = initialState, { type, payload }) => {
       }
     case UPDATE_SIGNED_IN_STATUS:
       return { ...state, signedStatus: payload }
+    case UPDATE_INTRO_STATUS:
+      return { ...state, startStatus: payload }
     case SAVE_USER:
       return {
         ...state,
