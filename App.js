@@ -8,6 +8,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import { CartContextProvider } from './Util/Cartcontext'
 import AppStack from './Navigation/AppStack'
+import AppIntro from './Navigation/AppIntro'
 
 const customFonts = {
   DMSansRegular: require('./assets/fonts/DMSans-Regular.ttf'),
@@ -25,7 +26,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <CartContextProvider>
-        <NavigationContainer>{fontsLoaded && <AppStack />}</NavigationContainer>
+        <NavigationContainer>{fontsLoaded && <AppIntro />}</NavigationContainer>
       </CartContextProvider>
     </Provider>
   )

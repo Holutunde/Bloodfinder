@@ -5,6 +5,7 @@ import {
   SAVE_USER,
   SIGN_OUT,
   LOADING,
+  UPDATE_INTRO_STATUS,
   UPDATE_SIGNED_IN_STATUS,
   REFRESHING,
   GET_CURRENT_USER,
@@ -12,6 +13,11 @@ import {
 } from '../types'
 
 import { apiRequest, showApiError } from '../helpers/api'
+
+export const updateIntroStatus = (data) => ({
+  type: UPDATE_INTRO_STATUS,
+  payload: data,
+})
 
 export const regUser = (data) => ({
   type: REG_USER,
