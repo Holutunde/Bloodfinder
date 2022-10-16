@@ -1,11 +1,8 @@
 import React from 'react'
 import { View, Image, Text, StyleSheet } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-
 import AppIntroSlider from 'react-native-app-intro-slider'
-import { updateIntroStatus } from '../../actions/auth'
-import { saveAsyncData } from '../../helpers/storage'
-import { connect, useDispatch } from 'react-redux'
+import { useNavigation } from '@react-navigation/native'
 
 const slides = [
   {
@@ -23,11 +20,10 @@ const slides = [
   },
 ]
 
-const Onboarding = (props) => {
-  const dispatch = useDispatch()
+const Onboarding = () => {
+  const navigation = useNavigation()
   const _onDone = () => {
-    saveAsyncData('introHasBeenPlayed', true)
-    dispatch(updateIntroStatus(true))
+    navigation.navigate('GetStarted')
   }
   const _renderItem = ({ item }) => {
     return (
@@ -104,10 +100,4 @@ const styles = StyleSheet.create({
   },
 })
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    updateIntroPlayedAction: (status) => dispatch(updateIntroStatus(status)),
-  }
-}
-
-export default connect(null, mapDispatchToProps)(Onboarding)
+export default Onboarding

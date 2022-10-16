@@ -9,8 +9,6 @@ const Container = createNativeStackNavigator()
 
 const AppStack = (props) => {
   //const { signedStatus } = useSelector((state) => state.reducers)
-
-  console.log(props.startStatus)
   return (
     <Container.Navigator screenOptions={{ headerShown: false }}>
       {props.signedStatus ? (
@@ -24,7 +22,6 @@ const AppStack = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    startStatus: state.reducers.startStatus,
     signedStatus: state.reducers.signedStatus,
   }
 }

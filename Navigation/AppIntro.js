@@ -36,8 +36,6 @@ import AppStack from './AppStack'
 const Start = createNativeStackNavigator()
 
 const AppIntro = (props) => {
-  //const { signedStatus } = useSelector((state) => state.reducers)
-  console.log(props.startStatus)
   return (
     <Start.Navigator screenOptions={{ headerShown: false }}>
       {props.startStatus ? (

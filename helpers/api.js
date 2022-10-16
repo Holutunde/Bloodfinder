@@ -1,13 +1,7 @@
-/* eslint-disable prefer-promise-reject-errors */
-/* eslint-disable no-underscore-dangle */
 import axios from 'axios'
 import { AsyncStorage, Alert } from 'react-native'
 
-//import NavigationService from '../navigation/NavigationService'
-// import store from '../store'
-// import { SAVE_TOKEN } from '../types'
-
-const API_URL = 'https://job-api-99.herokuapp.com/'
+const API_URL = 'https://bloodfinder-api.herokuapp.com/bloodfinder/users'
 
 export const apiRequest = async (endpoint, method, body = {}, token) => {
   try {

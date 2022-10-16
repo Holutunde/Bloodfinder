@@ -25,15 +25,19 @@ const Button = ({
         ...style,
       }}
     >
-      <Text
-        style={{
-          color: '#ffffff',
-          fontSize: 15,
-          ...textStyle,
-        }}
-      >
-        {children}
-      </Text>
+      {loading ? (
+        <ActivityIndicator size="small" color="white" animating />
+      ) : (
+        <Text
+          style={{
+            color: '#ffffff',
+            fontSize: 15,
+            ...textStyle,
+          }}
+        >
+          {children}
+        </Text>
+      )}
     </TouchableOpacity>
   )
 }

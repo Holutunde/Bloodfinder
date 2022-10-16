@@ -11,7 +11,7 @@ import {
   StyleSheet,
 } from 'react-native'
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Toptext from '../../components/Toptext'
 import NormalText from '../../components/Text'
 import Input from '../../components/Input'
@@ -22,6 +22,7 @@ import { saveAsyncData } from '../../helpers/storage'
 
 const Login = ({ navigation }) => {
   const dispatch = useDispatch()
+
   const [data, setData] = useState({
     email: '',
     password: '',
@@ -36,7 +37,7 @@ const Login = ({ navigation }) => {
 
   const handleLogin = () => {
     if (data.email != '' && data.password != '') {
-      console.log(data)
+      // console.log(data)
       saveAsyncData('alreadyLoggedin', true)
       dispatch(login(data))
     }
@@ -69,6 +70,7 @@ const Login = ({ navigation }) => {
                 value={data.password}
                 onChangeText={(password) => handleInput({ password })}
                 placeholder="Password"
+                secureTextEntry
               />
 
               <TouchableOpacity
