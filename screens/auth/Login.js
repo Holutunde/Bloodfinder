@@ -12,6 +12,7 @@ import {
 } from 'react-native'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import * as Animatable from 'react-native-animatable'
 import Toptext from '../../components/Toptext'
 import NormalText from '../../components/Text'
 import Input from '../../components/Input'
@@ -22,6 +23,9 @@ import { saveAsyncData } from '../../helpers/storage'
 
 const Login = ({ navigation }) => {
   const dispatch = useDispatch()
+  const validator = require('validator')
+  const [authorize, setAuthorize] = useState()
+  const [errorText, setErrorText] = useState()
 
   const [data, setData] = useState({
     email: '',
@@ -36,6 +40,13 @@ const Login = ({ navigation }) => {
   }
 
   const handleLogin = () => {
+    if (data.password.length == 0 || data.email.length == 0) {
+      setAuthorize(false)
+      setErrorText('Kindly fill all required fields')
+    } else if (!validator.isEmail(data.email)) {
+      setAuthorize(false)
+      setErrorText('Invalid Email address')
+    }
     if (data.email != '' && data.password != '') {
       // console.log(data)
       saveAsyncData('alreadyLoggedin', true)
@@ -59,6 +70,15 @@ const Login = ({ navigation }) => {
             <View style={styles.head}>
               <Toptext />
             </View>
+            {authorize ? null : (
+              <Animatable.Text
+                animation="shake"
+                duration={500}
+                style={styles.errorMsg}
+              >
+                {errorText}
+              </Animatable.Text>
+            )}
             <View style={styles.formcontainer}>
               <Input
                 value={data.email}
@@ -132,6 +152,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#122332',
+  },
+  errorMsg: {
+    color: '#D33A39',
+    fontSize: 14,
   },
   formcontainer: {
     paddingTop: 10,

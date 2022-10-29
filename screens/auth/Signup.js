@@ -27,8 +27,9 @@ const Signup = ({ navigation }) => {
   // console.log(regData)
   const [isValidUser, setValidUser] = useState(true)
   const [isValidPassword, setValidPassword] = useState(true)
-  const [isValidEmail, setVaidEmail] = useState(true)
-  const [authorization, setAuthorization] = useState()
+  const [isValidEmail, setValidEmail] = useState(true)
+  const [authorize, setAuthorize] = useState()
+  const [errorText, setErrorText] = useState()
   const [data, setData] = useState({
     username: '',
     email: '',
@@ -71,13 +72,16 @@ const Signup = ({ navigation }) => {
       data.password.length == 0 ||
       data.email.length == 0
     ) {
-      setAuthorization(false)
+      setAuthorize(false)
+      setErrorText('Kindly fill all required fields')
     } else if (!validator.isEmail(data.email)) {
-      setVaidEmail(false)
-      setAuthorization(false)
+      setValidEmail(false)
+      setAuthorize(false)
+    } else {
+      setAuthorize(true)
+      setErrorText('Confirm your account via gmail')
+      dispatch(register(data))
     }
-    setAuthorization(true)
-    dispatch(register(data))
   }
 
   return (
@@ -97,6 +101,23 @@ const Signup = ({ navigation }) => {
             <View style={styles.toptext}>
               <Toptext />
             </View>
+            {authorize ? (
+              <Animatable.Text
+                animation="shake"
+                duration={500}
+                style={styles.errorMsg}
+              >
+                {errorText}
+              </Animatable.Text>
+            ) : (
+              <Animatable.Text
+                animation="shake"
+                duration={500}
+                style={styles.errorMsg}
+              >
+                {errorText}
+              </Animatable.Text>
+            )}
             <View style={styles.form}>
               <Input
                 onChangeText={(username) => handleInput(username)}

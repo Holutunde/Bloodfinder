@@ -50,15 +50,13 @@ export const login = (user) => (dispatch) => {
   dispatch(loading(true))
   apiRequest('/login', 'POST', user)
     .then(({ data }) => {
-      console.log('login', data)
-      const { token: accessToken, use } = data
-      dispatch(saveUser(accessToken, { passData, userData }))
-      //dispatch(updateSignedInStatus(true))
+      const { token: accessToken, userData } = data
+      dispatch(saveUser(accessToken, { userData }))
       Alert.alert(`login successful`)
     })
     .catch((err) => {
-      //showApiError(err, true, () => dispatch(login(user)))
-      console.log('Error =>>>> ')
+      showApiError(err)
+      // console.log('Error =>>>>', err)
       dispatch(updateSignedInStatus(false))
     })
     .finally(() => {
