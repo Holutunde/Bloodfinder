@@ -21,9 +21,10 @@ const ref = React.createRef()
 const Input = ({
   ref,
   value,
+  onEndEditing,
   onChangeText,
   placeholder = '',
-  autoCapitalize = 'sentences',
+  autoCapitalize = 'none',
   secureTextEntry = false,
   keyboardType = '',
   maxLength,
@@ -45,7 +46,7 @@ const Input = ({
         borderWidth: 1,
         borderColor: isFocused ? textBorderFocused : textInputBorder,
         width: '80%',
-        height: multiline ? 150 : 60,
+        height: 60,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -66,6 +67,7 @@ const Input = ({
         ref={ref}
         value={value}
         onChangeText={onChangeText}
+        onEndEditing={onEndEditing}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
         placeholder={placeholder}
@@ -91,7 +93,7 @@ const Input = ({
           style={{ marginLeft: 10 }}
         >
           <Ionicons
-            color={textColor}
+            color={textInputBorder}
             size={22}
             name={showPassword ? 'ios-eye-off' : 'ios-eye'}
           />

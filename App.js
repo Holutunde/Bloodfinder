@@ -7,8 +7,10 @@ import { StyleSheet, Text, View } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import { CartContextProvider } from './Util/Cartcontext'
+import { getAsyncData } from './helpers/storage'
 import AppStack from './Navigation/AppStack'
 import AppIntro from './Navigation/AppIntro'
+import DrawerStack from './Navigation/DrawerStack'
 
 const customFonts = {
   DMSansRegular: require('./assets/fonts/DMSans-Regular.ttf'),
@@ -22,18 +24,21 @@ const customFonts = {
 const Drawer = createDrawerNavigator()
 const store = createdStore()
 const App = () => {
+  const confirmAsync = getAsyncData('alreadyLoggedin')
+
   const [fontsLoaded] = useFonts(customFonts)
+  //console.log(confirmAsync)
   return (
     <Provider store={store}>
       <CartContextProvider>
-        <NavigationContainer>{fontsLoaded && <AppIntro />}</NavigationContainer>
+        {fontsLoaded && (
+          <NavigationContainer>
+            {confirmAsync ? <AppIntro /> : <DrawerStack />}
+          </NavigationContainer>
+        )}
       </CartContextProvider>
     </Provider>
   )
 }
 
 export default App
-
-const styles = StyleSheet.create({
-  container: {},
-})

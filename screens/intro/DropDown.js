@@ -186,13 +186,13 @@ import SelectDropdown from 'react-native-select-dropdown'
 
 const SelectDropDown = () => {
   const LanguageWithFlags = [
-    { title: 'Egypt', image: require('../assets/images/country.png') },
-    { title: 'Canada', image: require('../assets/images/country.png') },
-    { title: 'Australia', image: require('../assets/images/country.png') },
-    { title: 'Ireland', image: require('../assets/images/country.png') },
-    { title: 'Brazil', image: require('../assets/images/country.png') },
-    { title: 'England', image: require('../assets/images/country.png') },
-    { title: 'Dubai', image: require('../assets/images/country.png') },
+    { title: 'Egypt', image: require('../../assets/images/country.png') },
+    { title: 'Canada', image: require('../../assets/images/country.png') },
+    { title: 'Australia', image: require('../../assets/images/country.png') },
+    { title: 'Ireland', image: require('../../assets/images/country.png') },
+    { title: 'Brazil', image: require('../../assets/images/country.png') },
+    { title: 'England', image: require('../../assets/images/country.png') },
+    { title: 'Dubai', image: require('../../assets/images/country.png') },
   ]
 
   return (

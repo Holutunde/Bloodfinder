@@ -5,7 +5,6 @@ import Signup from '../screens/auth/Signup'
 import ResetPassword1 from '../screens/auth/ResetPassword1'
 import ResetPassword2 from '../screens/auth/ResetPassword2'
 import ResetPassword3 from '../screens/auth/ResetPassword3'
-import GetStarted from '../screens/GetStarted'
 
 const Stack = createNativeStackNavigator()
 
@@ -17,7 +16,6 @@ const AuthStack = () => {
       <Stack.Screen name="ResetPassword1" component={ResetPassword1} />
       <Stack.Screen name="ResetPassword2" component={ResetPassword2} />
       <Stack.Screen name="ResetPassword3" component={ResetPassword3} />
-      <Stack.Screen name="GetStarted" component={GetStarted} />
     </Stack.Navigator>
   )
 }

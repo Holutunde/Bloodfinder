@@ -8,12 +8,11 @@ import DrawerStack from './DrawerStack'
 const Container = createNativeStackNavigator()
 
 const AppStack = (props) => {
-  //const { signedStatus } = useSelector((state) => state.reducers)
-
-  console.log(props.startStatus)
+  //const { isLoggedIn } = useSelector((state) => state.reducers)
+  console.log(props.isLoggedIn)
   return (
     <Container.Navigator screenOptions={{ headerShown: false }}>
-      {props.signedStatus ? (
+      {props.isLoggedIn ? (
         <Container.Screen name="Drawer" component={DrawerStack} />
       ) : (
         <Container.Screen name="Auth" component={AuthStack} />
@@ -24,8 +23,7 @@ const AppStack = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    startStatus: state.reducers.startStatus,
-    signedStatus: state.reducers.signedStatus,
+    isLoggedIn: state.reducers.isLoggedIn,
   }
 }
 

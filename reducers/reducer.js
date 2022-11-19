@@ -11,11 +11,9 @@ import {
 
 const initialState = {
   regData: {
-    firstname: '',
-    lastname: '',
+    email: '',
     username: '',
     password: '',
-    role: '',
   },
   userData: {
     email: '',
@@ -25,6 +23,7 @@ const initialState = {
   token: null,
   isLoading: false,
   signedStatus: false,
+  isLoggedIn: false,
 }
 
 export const reducer = (state = initialState, { type, payload }) => {
@@ -42,6 +41,19 @@ export const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         userData: payload,
+      }
+    case SAVE_TOKEN:
+      return {
+        ...state,
+        token: payload,
+        isLoggedIn: true,
+      }
+    case SIGN_OUT:
+      return {
+        ...state,
+        token: null,
+        user: null,
+        isLoggedIn: false,
       }
     case LOADING:
       return { ...state, isLoading: payload }

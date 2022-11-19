@@ -1,13 +1,7 @@
-/* eslint-disable prefer-promise-reject-errors */
-/* eslint-disable no-underscore-dangle */
 import axios from 'axios'
 import { AsyncStorage, Alert } from 'react-native'
 
-//import NavigationService from '../navigation/NavigationService'
-// import store from '../store'
-// import { SAVE_TOKEN } from '../types'
-
-const API_URL = 'https://job-api-99.herokuapp.com/'
+const API_URL = 'https://bloodfinder-api.herokuapp.com/bloodfinder/users'
 
 export const apiRequest = async (endpoint, method, body = {}, token) => {
   try {
@@ -31,21 +25,23 @@ export const apiRequest = async (endpoint, method, body = {}, token) => {
   }
 }
 
-export const showApiError = (err, title = 'Error') => {
-  // console.log("Error Received in Function", err);
-  // Alert.alert(title, err, [
-  // 	{ text: "Dismiss", onPress: () => console.log("OK Pressed") },
-  // ]);
-  const message =
-    err.name == undefined || err.response?.data
-      ? `${Object.values(err.response.data)[0]}`
-      : err.response?.data?.error || err.response?.data?.error || err.message
+export const showApiError = (
+  err,
+  tryAgain = true,
+  tryAgainFunc = null,
+  tryAgainText = 'Try Again',
+  title = '',
+) => {
+  const message = err.response?.data?.message || err.data
+  console.log('message', err)
 
-  // if (message && err.response?.status !== 401) {
-  console.log('This is the error message: ' + message)
-  if (message) {
+  if (message && err.response?.status !== 401) {
     Alert.alert(title, message, [
-      { text: 'Dismiss', onPress: () => console.log('OK Pressed') },
+      { text: 'Dismiss' },
+      tryAgain && {
+        text: tryAgainText,
+        onPress: tryAgainFunc,
+      },
     ])
   }
 }

@@ -7,11 +7,13 @@ import {
   ScrollView,
   SafeAreaView,
   Keyboard,
+  Alert,
   Platform,
   StyleSheet,
 } from 'react-native'
+import * as Animatable from 'react-native-animatable'
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Toptext from '../../components/Toptext'
 import NormalText, { BoldText } from '../../components/Text'
 import Input from '../../components/Input'
@@ -19,22 +21,67 @@ import { register } from '../../actions/auth'
 import Button from '../../components/Button'
 
 const Signup = ({ navigation }) => {
+  const validator = require('validator')
   const dispatch = useDispatch()
+  const { regData } = useSelector((state) => state.reducers)
+  // console.log(regData)
+  const [isValidUser, setValidUser] = useState(true)
+  const [isValidPassword, setValidPassword] = useState(true)
+  const [isValidEmail, setValidEmail] = useState(true)
+  const [authorize, setAuthorize] = useState()
+  const [errorText, setErrorText] = useState()
   const [data, setData] = useState({
-    name: '',
+    username: '',
     email: '',
     password: '',
   })
 
-  const handleInput = (value) => {
+  const handleInput = (val) => {
+    if (val.length >= 4) {
+      setData({
+        ...data,
+        username: val,
+      }),
+        setValidUser(true)
+    } else {
+      setValidUser(false)
+    }
+  }
+
+  const handlePassword = (pass) => {
+    if (pass.length >= 5) {
+      setData({
+        ...data,
+        password: pass,
+      }),
+        setValidPassword(true)
+    } else {
+      setValidPassword(false)
+    }
+  }
+  const handleEmail = (mail) => {
     setData({
       ...data,
-      ...value,
+      email: mail,
     })
   }
 
   const handleRegister = () => {
-    dispatch(register(data))
+    if (
+      data.username.length == 0 ||
+      data.password.length == 0 ||
+      data.email.length == 0
+    ) {
+      setAuthorize(false)
+      setErrorText('Kindly fill all required fields')
+    } else if (!validator.isEmail(data.email)) {
+      setValidEmail(false)
+      setAuthorize(false)
+    } else {
+      setAuthorize(true)
+      setErrorText('Confirm your account via gmail')
+      dispatch(register(data))
+    }
   }
 
   return (
@@ -54,30 +101,63 @@ const Signup = ({ navigation }) => {
             <View style={styles.toptext}>
               <Toptext />
             </View>
+            {authorize ? (
+              <Animatable.Text
+                animation="shake"
+                duration={500}
+                style={styles.errorMsg}
+              >
+                {errorText}
+              </Animatable.Text>
+            ) : (
+              <Animatable.Text
+                animation="shake"
+                duration={500}
+                style={styles.errorMsg}
+              >
+                {errorText}
+              </Animatable.Text>
+            )}
             <View style={styles.form}>
-              {/* <Input placeholder="Name of Hospital/Lab" />
-              <Input placeholder="Location" />
-              <Input placeholder="Email Address" />
-              <Input placeholder="Password" />
-            <Input placeholder="Confirm password" /> */}
               <Input
-                value={data.name}
-                onChangeText={(name) => handleInput({ name })}
-                placeholder="Name"
+                onChangeText={(username) => handleInput(username)}
+                placeholder="Username"
                 coverStyle={{}}
               />
+              {isValidUser ? null : (
+                <Animatable.Text
+                  animation="fadeInLeft"
+                  duration={500}
+                  style={styles.errorMsg}
+                >
+                  Username must exceed 5 characters long.
+                </Animatable.Text>
+              )}
               <Input
-                value={data.email}
-                onChangeText={(email) => handleInput({ email })}
+                onChangeText={(email) => handleEmail(email)}
                 placeholder="Email Address"
                 coverStyle={{}}
               />
+              {isValidEmail ? null : (
+                <Animatable.Text
+                  animation="shake"
+                  duration={500}
+                  style={styles.errorMsg}
+                >
+                  Invalid email address
+                </Animatable.Text>
+              )}
               <Input
-                value={data.password}
-                onChangeText={(password) => handleInput({ password })}
+                onChangeText={(password) => handlePassword(password)}
                 placeholder="Password"
               />
-
+              {isValidPassword ? null : (
+                <Animatable.View animation="fadeInLeft" duration={500}>
+                  <Text style={styles.errorMsg}>
+                    Password must exceed 5 characters long.
+                  </Text>
+                </Animatable.View>
+              )}
               <View
                 style={{
                   flexDirection: 'row',
@@ -115,30 +195,8 @@ const styles = StyleSheet.create({
   form: {
     paddingTop: 15,
   },
-  pascont: {
-    alignItems: 'center',
-    marginVertical: 30,
-  },
-  pas: {
-    color: '#FFFFFF',
-    fontSize: 15,
-    fontWeight: '400',
-  },
-  butcont: {
-    borderWidth: 1,
-    marginTop: 20,
-    borderColor: '#FFFFFF',
-    borderRadius: 30,
-    backgroundColor: '#D33A39',
-    justifyContent: 'center',
-    height: 50,
-  },
-  buttext: {
-    color: '#FFFFFF',
-    textAlign: 'center',
-  },
-
-  icon: {
-    marginHorizontal: 40,
+  errorMsg: {
+    color: '#D33A39',
+    fontSize: 14,
   },
 })

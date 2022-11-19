@@ -24,40 +24,39 @@ export const regUser = (data) => ({
   payload: data,
 })
 
-export const updateSignedInStatus = () => ({
+export const updateSignedInStatus = (data) => ({
   type: UPDATE_SIGNED_IN_STATUS,
-  payload: true,
+  payload: data,
 })
-export const saveUser = (user) => ({
-  type: SAVE_USER,
-  payload: user,
-})
+
+export const saveUser = (token, user) => (dispatch) => {
+  dispatch({
+    type: SAVE_TOKEN,
+    payload: token,
+  })
+
+  dispatch({
+    type: SAVE_USER,
+    payload: user,
+  })
+}
+
 export const loading = (data) => ({
   type: LOADING,
   payload: data,
 })
 
-export const login = (user, navigation) => (dispatch) => {
-  dispatch({
-    type: LOADING,
-    payload: true,
-  })
-  apiRequest('api/auth/login/', 'POST', user)
+export const login = (user) => (dispatch) => {
+  dispatch(loading(true))
+  apiRequest('/login', 'POST', user)
     .then(({ data }) => {
-      if (data.user == '') {
-        Alert.alert(`Kindly input login details`)
-      }
-      console.log(data)
-      dispatch(saveUser(data))
-      dispatch({
-        type: UPDATE_SIGNED_IN_STATUS,
-        payload: true,
-      })
+      const { token: accessToken, userData } = data
+      dispatch(saveUser(accessToken, { userData }))
       Alert.alert(`login successful`)
     })
     .catch((err) => {
-      showApiError(err, true, () => dispatch(login(user)))
-      console.log('Error =>>>> ', err)
+      showApiError(err)
+      // console.log('Error =>>>>', err)
       dispatch(updateSignedInStatus(false))
     })
     .finally(() => {
@@ -66,17 +65,14 @@ export const login = (user, navigation) => (dispatch) => {
 }
 export const register = (createUser) => (dispatch) => {
   dispatch(loading(true))
-  apiRequest('api/auth/register/', 'POST', createUser)
+  apiRequest('/register', 'POST', createUser)
     .then(({ data }) => {
-      if (!data) {
-        Alert.alert(`Kindly input login details`)
-      }
       dispatch(regUser(data))
       Alert.alert(`signup successful`)
       console.log(data)
     })
     .catch((err) => {
-      showApiError(err, true, () => dispatch(register(createUser)))
+      console.log('Error =>>>> ', err)
     })
     .finally(() => {
       dispatch(loading(false))

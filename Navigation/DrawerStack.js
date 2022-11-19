@@ -29,7 +29,7 @@ const DrawerStack = () => {
       }}
     >
       <Drawer.Screen
-        name="MainStack"
+        name="Home"
         component={MainStackScreens}
         // options={{
         //   drawerIcon: ({ color }) => (
