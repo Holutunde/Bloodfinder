@@ -9,64 +9,62 @@ import {
   Keyboard,
   Platform,
   StyleSheet,
-} from 'react-native'
-import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import * as Animatable from 'react-native-animatable'
-import Toptext from '../../components/Toptext'
-import NormalText from '../../components/Text'
-import Input from '../../components/Input'
-import { login } from '../../actions/auth'
-import { FontAwesome5 } from '@expo/vector-icons'
-import Button from '../../components/Button'
-import { saveAsyncData } from '../../helpers/storage'
+} from "react-native";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import * as Animatable from "react-native-animatable";
+import Toptext from "../../components/Toptext";
+import NormalText from "../../components/Text";
+import Input from "../../components/Input";
+import { login } from "../../actions/auth";
+import { FontAwesome5 } from "@expo/vector-icons";
+import Button from "../../components/Button";
+import { saveAsyncData } from "../../helpers/storage";
 
 const Login = ({ navigation }) => {
-  const dispatch = useDispatch()
-  const validator = require('validator')
-  const [authorize, setAuthorize] = useState()
-  const [errorText, setErrorText] = useState()
+  const dispatch = useDispatch();
+  const validator = require("validator");
+  const [authorize, setAuthorize] = useState();
+  const [errorText, setErrorText] = useState();
 
   const [data, setData] = useState({
-    email: '',
-    password: '',
-  })
+    email: "",
+    password: "",
+  });
 
   const handleInput = (value) => {
     setData({
       ...data,
       ...value,
-    })
-  }
+    });
+  };
 
   const handleLogin = () => {
     if (data.password.length == 0 || data.email.length == 0) {
-      setAuthorize(false)
-      setErrorText('Kindly fill all required fields')
+      setAuthorize(false);
+      setErrorText("Kindly fill all required fields");
     } else if (!validator.isEmail(data.email)) {
-      setAuthorize(false)
-      setErrorText('Invalid Email address')
+      setAuthorize(false);
+      setErrorText("Invalid Email address");
     }
-    if (data.email != '' && data.password != '') {
+    if (data.email != "" && data.password != "") {
       // console.log(data)
-      saveAsyncData('alreadyLoggedin', true)
-      dispatch(login(data))
+      dispatch(login(data));
+      saveAsyncData("alreadyLoggedin", true);
     }
-  }
+  };
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView
         style={{ flex: 1 }}
-        behavior={Platform.OS === 'ios' ? 'padding' : null}
-      >
+        behavior={Platform.OS === "ios" ? "padding" : null}>
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
           <ScrollView
             contentContainerStyle={{
-              alignItems: 'center',
-              justifyContent: 'center',
+              alignItems: "center",
+              justifyContent: "center",
               flex: 1,
-            }}
-          >
+            }}>
             <View style={styles.head}>
               <Toptext />
             </View>
@@ -74,8 +72,7 @@ const Login = ({ navigation }) => {
               <Animatable.Text
                 animation="shake"
                 duration={500}
-                style={styles.errorMsg}
-              >
+                style={styles.errorMsg}>
                 {errorText}
               </Animatable.Text>
             )}
@@ -94,9 +91,8 @@ const Login = ({ navigation }) => {
               />
 
               <TouchableOpacity
-                onPress={() => navigation.navigate('ResetPassword1')}
-                style={styles.forgotpasscont}
-              >
+                onPress={() => navigation.navigate("ResetPassword1")}
+                style={styles.forgotpasscont}>
                 <Text style={styles.passtext}>Forgot Password?</Text>
               </TouchableOpacity>
 
@@ -129,12 +125,12 @@ const Login = ({ navigation }) => {
                 />
               </TouchableOpacity>
             </View>
-            <View style={{ flexDirection: 'row', paddingTop: 30 }}>
+            <View style={{ flexDirection: "row", paddingTop: 30 }}>
               <NormalText style={{ paddingRight: 10, fontSize: 15 }}>
                 Not a user yet?
               </NormalText>
-              <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
-                <NormalText style={{ color: '#D33A39', fontSize: 15 }}>
+              <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
+                <NormalText style={{ color: "#D33A39", fontSize: 15 }}>
                   Sign up
                 </NormalText>
               </TouchableOpacity>
@@ -143,51 +139,51 @@ const Login = ({ navigation }) => {
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
     </SafeAreaView>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#122332',
+    backgroundColor: "#122332",
   },
   errorMsg: {
-    color: '#D33A39',
+    color: "#D33A39",
     fontSize: 14,
   },
   formcontainer: {
     paddingTop: 10,
   },
   forgotpasscont: {
-    alignItems: 'center',
+    alignItems: "center",
     marginVertical: 18,
   },
   passtext: {
-    color: '#FFFFFF',
+    color: "#FFFFFF",
     fontSize: 15,
-    fontWeight: '400',
+    fontWeight: "400",
   },
   linecontainer: {
     paddingVertical: 25,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
   },
   line: {
     borderWidth: 0.5,
-    borderColor: '#9ba0a8',
-    width: '38%',
+    borderColor: "#9ba0a8",
+    width: "38%",
   },
   linetext: {
-    color: '#9ba0a8',
+    color: "#9ba0a8",
     fontSize: 20,
   },
   linkscontainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
   },
   icon: {
     marginHorizontal: 40,
   },
-})
+});

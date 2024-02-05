@@ -9,11 +9,14 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import React, { useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import NormalText, { BoldText } from "../../components/Text";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 
 const ResetPassword2 = ({ navigation }) => {
+  const { isUserRegistered, otpToken } = useSelector((state) => state.reducers);
+  console.log("user registered", otpToken);
   const firstInput = useRef(null);
   const secondInput = useRef(null);
   const thirdInput = useRef(null);

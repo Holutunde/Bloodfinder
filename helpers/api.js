@@ -1,7 +1,7 @@
 import axios from "axios";
 import { AsyncStorage, Alert } from "react-native";
 
-const API_URL = "https://bloodfinder.onrender.com/bloodfinder/users";
+const API_URL = "http://localhost:5000/bloodfinder/users";
 
 export const apiRequest = async (endpoint, method, body = {}, token) => {
   try {
@@ -32,10 +32,25 @@ export const showApiError = (
   tryAgainText = "Try Again",
   title = ""
 ) => {
-  const message = err.response?.data?.message || err.data;
-  console.log("message", err);
+  let message = "";
+  let statusCode = null;
 
-  if (message && err.response?.status !== 401) {
+  if (err.response) {
+    // If there is a response object in the error
+    message = err.response.data.message || "An error occurred.";
+    statusCode = err.response.status;
+  } else if (err.data) {
+    // If there is a data property in the error
+    message = err.data;
+  } else {
+    // If no specific error message is found
+    message = "An unexpected error occurred.";
+  }
+
+  console.log("Error message:", message);
+  console.log("Status code:", statusCode);
+
+  if (message && statusCode !== 401) {
     Alert.alert(title, message, [
       { text: "Dismiss" },
       tryAgain && {

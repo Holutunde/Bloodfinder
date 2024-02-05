@@ -1,5 +1,8 @@
 import {
   SAVE_TOKEN,
+  SAVE_OTP_TOKEN,
+  OTP_SENT,
+  VALID_USER,
   SIGN_OUT,
   SAVE_USER,
   UPDATE_SIGNED_IN_STATUS,
@@ -24,6 +27,9 @@ const initialState = {
   isLoading: false,
   signedStatus: false,
   isLoggedIn: false,
+  isUserRegistered: false,
+  otpToken: null,
+  otpSent: false,
 };
 
 export const reducer = (state = initialState, { type, payload }) => {
@@ -42,11 +48,26 @@ export const reducer = (state = initialState, { type, payload }) => {
         ...state,
         userData: payload,
       };
+    case VALID_USER:
+      return {
+        ...state,
+        isUserRegistered: payload,
+      };
     case SAVE_TOKEN:
       return {
         ...state,
         token: payload,
         isLoggedIn: true,
+      };
+    case SAVE_OTP_TOKEN:
+      return {
+        ...state,
+        otpToken: payload,
+      };
+    case OTP_SENT:
+      return {
+        ...state,
+        otpSent: payload,
       };
     case SIGN_OUT:
       return {

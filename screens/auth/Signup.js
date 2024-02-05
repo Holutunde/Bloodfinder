@@ -10,31 +10,31 @@ import {
   Alert,
   Platform,
   StyleSheet,
-} from 'react-native'
-import * as Animatable from 'react-native-animatable'
-import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import Toptext from '../../components/Toptext'
-import NormalText, { BoldText } from '../../components/Text'
-import Input from '../../components/Input'
-import { register } from '../../actions/auth'
-import Button from '../../components/Button'
+} from "react-native";
+import * as Animatable from "react-native-animatable";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Toptext from "../../components/Toptext";
+import NormalText, { BoldText } from "../../components/Text";
+import Input from "../../components/Input";
+import { register } from "../../actions/auth";
+import Button from "../../components/Button";
 
 const Signup = ({ navigation }) => {
-  const validator = require('validator')
-  const dispatch = useDispatch()
-  const { regData } = useSelector((state) => state.reducers)
+  const validator = require("validator");
+  const dispatch = useDispatch();
+  const { regData } = useSelector((state) => state.reducers);
   // console.log(regData)
-  const [isValidUser, setValidUser] = useState(true)
-  const [isValidPassword, setValidPassword] = useState(true)
-  const [isValidEmail, setValidEmail] = useState(true)
-  const [authorize, setAuthorize] = useState()
-  const [errorText, setErrorText] = useState()
+  const [isValidUser, setValidUser] = useState(true);
+  const [isValidPassword, setValidPassword] = useState(true);
+  const [isValidEmail, setValidEmail] = useState(true);
+  const [authorize, setAuthorize] = useState();
+  const [errorText, setErrorText] = useState();
   const [data, setData] = useState({
-    username: '',
-    email: '',
-    password: '',
-  })
+    username: "",
+    email: "",
+    password: "",
+  });
 
   const handleInput = (val) => {
     if (val.length >= 4) {
@@ -42,29 +42,30 @@ const Signup = ({ navigation }) => {
         ...data,
         username: val,
       }),
-        setValidUser(true)
+        setValidUser(true);
     } else {
-      setValidUser(false)
+      setValidUser(false);
     }
-  }
+  };
 
   const handlePassword = (pass) => {
     if (pass.length >= 5) {
       setData({
         ...data,
         password: pass,
+        c,
       }),
-        setValidPassword(true)
+        setValidPassword(true);
     } else {
-      setValidPassword(false)
+      setValidPassword(false);
     }
-  }
+  };
   const handleEmail = (mail) => {
     setData({
       ...data,
       email: mail,
-    })
-  }
+    });
+  };
 
   const handleRegister = () => {
     if (
@@ -72,32 +73,30 @@ const Signup = ({ navigation }) => {
       data.password.length == 0 ||
       data.email.length == 0
     ) {
-      setAuthorize(false)
-      setErrorText('Kindly fill all required fields')
+      setAuthorize(false);
+      setErrorText("Kindly fill all required fields");
     } else if (!validator.isEmail(data.email)) {
-      setValidEmail(false)
-      setAuthorize(false)
+      setValidEmail(false);
+      setAuthorize(false);
     } else {
-      setAuthorize(true)
-      setErrorText('Confirm your account via gmail')
-      dispatch(register(data))
+      setAuthorize(true);
+      setErrorText("Confirm your account via gmail");
+      dispatch(register(data));
     }
-  }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView
         style={{ flex: 1 }}
-        behavior={Platform.OS === 'ios' ? 'padding' : null}
-      >
+        behavior={Platform.OS === "ios" ? "padding" : null}>
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
           <ScrollView
             contentContainerStyle={{
-              alignItems: 'center',
-              justifyContent: 'center',
+              alignItems: "center",
+              justifyContent: "center",
               flex: 1,
-            }}
-          >
+            }}>
             <View style={styles.toptext}>
               <Toptext />
             </View>
@@ -105,16 +104,14 @@ const Signup = ({ navigation }) => {
               <Animatable.Text
                 animation="shake"
                 duration={500}
-                style={styles.errorMsg}
-              >
+                style={styles.errorMsg}>
                 {errorText}
               </Animatable.Text>
             ) : (
               <Animatable.Text
                 animation="shake"
                 duration={500}
-                style={styles.errorMsg}
-              >
+                style={styles.errorMsg}>
                 {errorText}
               </Animatable.Text>
             )}
@@ -128,8 +125,7 @@ const Signup = ({ navigation }) => {
                 <Animatable.Text
                   animation="fadeInLeft"
                   duration={500}
-                  style={styles.errorMsg}
-                >
+                  style={styles.errorMsg}>
                   Username must exceed 5 characters long.
                 </Animatable.Text>
               )}
@@ -142,8 +138,7 @@ const Signup = ({ navigation }) => {
                 <Animatable.Text
                   animation="shake"
                   duration={500}
-                  style={styles.errorMsg}
-                >
+                  style={styles.errorMsg}>
                   Invalid email address
                 </Animatable.Text>
               )}
@@ -160,16 +155,15 @@ const Signup = ({ navigation }) => {
               )}
               <View
                 style={{
-                  flexDirection: 'row',
+                  flexDirection: "row",
                   marginVertical: 10,
-                  justifyContent: 'center',
-                }}
-              >
+                  justifyContent: "center",
+                }}>
                 <NormalText style={{ paddingRight: 10, fontSize: 15 }}>
                   Already a user?
                 </NormalText>
-                <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                  <NormalText style={{ color: '#D33A39', fontSize: 15 }}>
+                <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+                  <NormalText style={{ color: "#D33A39", fontSize: 15 }}>
                     Sign in
                   </NormalText>
                 </TouchableOpacity>
@@ -182,21 +176,21 @@ const Signup = ({ navigation }) => {
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
     </SafeAreaView>
-  )
-}
+  );
+};
 
-export default Signup
+export default Signup;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#122332',
+    backgroundColor: "#122332",
   },
   form: {
     paddingTop: 15,
   },
   errorMsg: {
-    color: '#D33A39',
+    color: "#D33A39",
     fontSize: 14,
   },
-})
+});
