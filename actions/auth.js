@@ -92,7 +92,7 @@ export const resetPassword = (email) => (dispatch) => {
   apiRequest("/otp/generate", "POST", { email })
     .then(({ data }) => {
       dispatch(validUser(true));
-      dispatch(saveOTPToken(data.otp, true)); // Fix the syntax here
+      dispatch(saveOTPToken(data, true)); // Fix the syntax here
       Alert.alert("Success", `Token sent`);
     })
     .catch((err) => {
@@ -103,15 +103,16 @@ export const resetPassword = (email) => (dispatch) => {
     });
 };
 
-export const confirmOTP = (token) => (dispatch) => {
+export const confirmOTP = (token, email) => (dispatch) => {
   dispatch(loading(true));
-  apiRequest(`/otp/verify/${token}`, "POST", createUser)
+
+  apiRequest(`/otp/verify/${token}`, "POST", { token, email })
     .then(({ data }) => {
-      Alert.alert(`signup successful`);
-      console.log(data);
+      Alert.alert("Success", `OTP Confirmed`);
     })
     .catch((err) => {
-      console.log("Error =>>>> ", err);
+      console.log("Error =>>>> ");
+      Alert.alert("Error", "Invalid OTP");
     })
     .finally(() => {
       dispatch(loading(false));

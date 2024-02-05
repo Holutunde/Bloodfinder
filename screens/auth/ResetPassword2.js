@@ -10,13 +10,18 @@ import {
 } from "react-native";
 import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import * as Animatable from "react-native-animatable";
+import { confirmOTP } from "../../actions/auth";
 import NormalText, { BoldText } from "../../components/Text";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 
 const ResetPassword2 = ({ navigation }) => {
+  const [authorize, setAuthorize] = useState();
+  const [errorText, setErrorText] = useState();
+  const dispatch = useDispatch();
   const { isUserRegistered, otpToken } = useSelector((state) => state.reducers);
-  console.log("user registered", otpToken);
+
   const firstInput = useRef(null);
   const secondInput = useRef(null);
   const thirdInput = useRef(null);
@@ -32,6 +37,17 @@ const ResetPassword2 = ({ navigation }) => {
     5: "",
     6: "",
   });
+
+  const handleConfimOTP = () => {
+    const enteredOTP = Object.values(otp).join("");
+
+    if (enteredOTP.length !== 6) {
+      setErrorText("Invalid OTP");
+    } else {
+      dispatch(confirmOTP(enteredOTP, otpToken.otpToken.email));
+    }
+  };
+
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView
@@ -51,10 +67,17 @@ const ResetPassword2 = ({ navigation }) => {
               <BoldText style={{ fontSize: 25, marginTop: 80 }}>
                 Forgot Password
               </BoldText>
-              <NormalText style={{ fontSize: 13, marginTop: 30 }}>
-                Enter the four digit reset code sent to your mobile phone
+              <NormalText style={{ fontSize: 13, marginVertical: 20 }}>
+                Enter the six digit reset code sent to your mobile phone
               </NormalText>
-
+              {authorize ? null : (
+                <Animatable.Text
+                  animation="shake"
+                  duration={500}
+                  style={styles.errorMsg}>
+                  {errorText}
+                </Animatable.Text>
+              )}
               <View style={styles.otpContainer}>
                 <View style={styles.otpBox}>
                   <TextInput
@@ -149,7 +172,7 @@ const ResetPassword2 = ({ navigation }) => {
                   height: 58,
                   borderColor: "#D33A39",
                 }}
-                onPress={() => navigation.navigate("ResetPassword3")}>
+                onPress={handleConfimOTP}>
                 VERIFY
               </Button>
             </View>
@@ -171,7 +194,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 90,
   },
-
+  errorMsg: {
+    color: "#D33A39",
+    fontSize: 14,
+  },
   otpBox: {
     borderRadius: 5,
     borderColor: "grey",
@@ -179,7 +205,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   otpText: {
-    fontSize: 25,
+    fontSize: 20,
     color: "white",
     fontWeight: "700",
     padding: 0,
@@ -189,7 +215,7 @@ const styles = StyleSheet.create({
   },
   otpContainer: {
     marginHorizontal: 20,
-    marginVertical: 40,
+    marginVertical: 30,
     justifyContent: "space-evenly",
     alignItems: "center",
     flexDirection: "row",
