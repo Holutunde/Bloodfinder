@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AntDesign } from "@expo/vector-icons";
 
 const ResetPassword1 = ({ navigation }) => {
-  const { otpSent } = useSelector((state) => state.reducers);
+  // const { otpSent } = useSelector((state) => state.reducers);
   const dispatch = useDispatch();
 
   const validator = require("validator");
@@ -36,15 +36,8 @@ const ResetPassword1 = ({ navigation }) => {
       setAuthorize(false);
       setErrorText("Invalid Email address");
     } else {
-      console.log(email);
       dispatch(resetPassword(email));
-      if (otpSent) {
-        navigation.navigate("ResetPassword2");
-      } else {
-        // Handle the case where OTP wasn't sent successfully
-        setAuthorize(false);
-        setErrorText("Failed to send OTP");
-      }
+      navigation.navigate("ResetPassword2");
     }
   };
   return (

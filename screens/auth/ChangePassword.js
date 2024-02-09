@@ -26,7 +26,7 @@ const ChangePassword = ({ navigation }) => {
   const [newpassword, setNewPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
 
-  const handleReset = () => {
+  const handleChanged = () => {
     if (newpassword.length === 0 || confirmpassword.length === 0) {
       setAuthorize(false);
       setErrorText("Password fields cannot be blank");
@@ -37,6 +37,7 @@ const ChangePassword = ({ navigation }) => {
       dispatch(
         changePassword(otpToken.otpToken.email, newpassword, confirmpassword)
       );
+      navigation.navigate("Login");
     }
   };
 
@@ -105,7 +106,7 @@ const ChangePassword = ({ navigation }) => {
                   height: 60,
                   borderColor: "#D33A39",
                 }}
-                onPress={handleReset}>
+                onPress={handleChanged}>
                 CHANGE PASSWORD
               </Button>
             </View>

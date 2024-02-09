@@ -97,6 +97,7 @@ export const resetPassword = (email) => (dispatch) => {
     })
     .catch((err) => {
       console.log("Error =>>>> ", err);
+      Alert.alert("Failed", `OTP not sent`);
     })
     .finally(() => {
       dispatch(loading(false));
