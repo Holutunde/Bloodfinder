@@ -45,6 +45,7 @@ const ResetPassword2 = ({ navigation }) => {
       setErrorText("Invalid OTP");
     } else {
       dispatch(confirmOTP(enteredOTP, otpToken.otpToken.email));
+      navigation.navigate("ChangePassword");
     }
   };
 

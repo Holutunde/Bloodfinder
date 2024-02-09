@@ -119,6 +119,27 @@ export const confirmOTP = (token, email) => (dispatch) => {
     });
 };
 
+export const changePassword =
+  (email, newpassword, confirmpassword) => (dispatch) => {
+    dispatch(loading(true));
+
+    apiRequest(`/changepassword`, "POST", {
+      email,
+      newpassword,
+      confirmpassword,
+    })
+      .then(({ data }) => {
+        Alert.alert("Success", `Password Successfully Changed`);
+      })
+      .catch((err) => {
+        console.log("Error =>>>> ");
+        Alert.alert("Error", "Invalid OTP");
+      })
+      .finally(() => {
+        dispatch(loading(false));
+      });
+  };
+
 export const register = (createUser) => (dispatch) => {
   dispatch(loading(true));
   apiRequest("/register", "POST", createUser)
