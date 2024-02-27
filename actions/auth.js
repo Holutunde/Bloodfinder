@@ -116,7 +116,6 @@ export const confirmOTP = (token, email) => (dispatch) => {
       })
       .catch((err) => {
         console.log("Error =>>>> ");
-        Alert.alert("Error", "Invalid OTP");
         dispatch(loading(false));
         reject(); // Reject the promise to indicate failure in OTP confirmation
       });

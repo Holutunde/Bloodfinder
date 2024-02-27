@@ -12,48 +12,42 @@ import {
   TouchableWithoutFeedback,
   ScrollView,
   KeyboardAvoidingView,
-} from 'react-native'
-import React, { useState } from 'react'
-import Input from '../components/Input'
-import { FontAwesome, Ionicons, AntDesign } from '@expo/vector-icons'
-import NormalText, { BoldText } from '../components/Text'
-import uuid from 'react-native-uuid'
-import Button from '../components/Button'
+} from "react-native";
+import React, { useState } from "react";
+import Input from "../components/Input";
+import { FontAwesome, Ionicons, AntDesign } from "@expo/vector-icons";
+import NormalText, { BoldText } from "../components/Text";
+import Button from "../components/Button";
 
 const Checkout1 = ({ navigation }) => {
-  const [modalOpen, setModalOpen] = useState(false)
-  const [addressbox, setAddressbox] = useState([])
+  const [modalOpen, setModalOpen] = useState(false);
+  const [addressbox, setAddressbox] = useState([]);
   const [data, setData] = useState({
-    lab: '',
-    num: '',
-  })
+    lab: "",
+    num: "",
+  });
   const handleInput = (value) => {
     setData({
       ...data,
       ...value,
-    })
-  }
+    });
+  };
   const addAddress = () => {
     //data.id = uuid.v4()
-    const newAdd = [...addressbox, data]
-    setData('')
-    setAddressbox(newAdd)
-    setModalOpen(false)
-  }
-  const rmAddress = (id) => {
-    let newArray = [...addressbox]
-    const index = newArray.findIndex((item) => item.id === id)
-    if (index !== -1) {
-      newArray.splice(index, 1)
-      setAddressbox(newArray)
-    }
-    // const spread = [...addressbox]
-    // spread.splice(index, 1)
-    // setAddressbox(spread)
-    // // const deleteId = index
-    // console.log(deleteId)
-    // setAddressbox(() => addressbox.filter((item) => item !== index))
-  }
+    const newAdd = [...addressbox, data];
+    setData("");
+    setAddressbox(newAdd);
+    setModalOpen(false);
+  };
+
+  const rmAddress = (index) => {
+    // Create a new array using filter to exclude the item at the specified index
+    const newArray = addressbox.filter((item, i) => i !== index);
+
+    // Update the state with the modified array
+    setAddressbox(newArray);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.uppertext}>
@@ -62,12 +56,11 @@ const Checkout1 = ({ navigation }) => {
       <BoldText style={{ marginLeft: 20, fontSize: 17 }}>
         Select delivery address
       </BoldText>
-      <View style={{ alignItems: 'center' }}>
+      <View style={{ alignItems: "center" }}>
         <View style={styles.addcontact}>
           <TouchableOpacity
             onPress={() => setModalOpen(true)}
-            style={styles.addaddress}
-          >
+            style={styles.addaddress}>
             <FontAwesome name="plus-circle" size={28} color="white" />
             <NormalText style={{ fontSize: 22, marginLeft: 10 }}>
               Add new address
@@ -80,15 +73,13 @@ const Checkout1 = ({ navigation }) => {
         <SafeAreaView style={styles.container}>
           <KeyboardAvoidingView
             style={{ flex: 1 }}
-            behavior={Platform.OS === 'ios' ? 'padding' : null}
-          >
+            behavior={Platform.OS === "ios" ? "padding" : null}>
             <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
               <ScrollView
                 contentContainerStyle={{
-                  alignItems: 'center',
+                  alignItems: "center",
                   flex: 1,
-                }}
-              >
+                }}>
                 <View style={styles.form}>
                   <BoldText style={{ marginLeft: 10, fontSize: 17 }}>
                     Add Delivery Address
@@ -117,14 +108,17 @@ const Checkout1 = ({ navigation }) => {
       <FlatList
         data={addressbox}
         renderItem={({ item, index }) => (
-          <View style={{ alignItems: 'center' }}>
+          <View style={{ alignItems: "center" }}>
             <View style={styles.addresscontent}>
               <View style={styles.topcont}>
                 <View style={styles.top}>
                   <Ionicons name="location-outline" size={24} color="white" />
                   <BoldText
-                    style={{ fontSize: 22, marginLeft: 10, fontWeight: 'bold' }}
-                  >
+                    style={{
+                      fontSize: 22,
+                      marginLeft: 10,
+                      fontWeight: "bold",
+                    }}>
                     Work
                   </BoldText>
                 </View>
@@ -135,11 +129,10 @@ const Checkout1 = ({ navigation }) => {
               <View style={styles.name}>
                 <Image
                   style={styles.img}
-                  source={require('../assets/images/Search1.png')}
+                  source={require("../assets/images/Search1.png")}
                 />
                 <NormalText
-                  style={{ fontSize: 17, marginLeft: 10, fontWeight: '700' }}
-                >
+                  style={{ fontSize: 17, marginLeft: 10, fontWeight: "700" }}>
                   {item.lab}
                 </NormalText>
               </View>
@@ -153,10 +146,10 @@ const Checkout1 = ({ navigation }) => {
                 <View style={styles.imgcont}>
                   <Image
                     style={styles.downimg}
-                    source={require('../assets/images/Search5.png')}
+                    source={require("../assets/images/Search5.png")}
                   />
                 </View>
-                <View style={{ paddingBottom: 10, flexDirection: 'row' }}>
+                <View style={{ paddingBottom: 10, flexDirection: "row" }}>
                   <NormalText style={{ marginLeft: 10, fontSize: 12 }}>
                     2 pints of O+
                   </NormalText>
@@ -173,25 +166,24 @@ const Checkout1 = ({ navigation }) => {
 
       <View style={styles.footerbtn}>
         <Button
-          onPress={() => navigation.navigate('Checkout2')}
-          style={{ width: '90%', height: 38, fontSize: 8 }}
-        >
+          onPress={() => navigation.navigate("Checkout2")}
+          style={{ width: "90%", height: 38, fontSize: 8 }}>
           Proceed to Payment
         </Button>
       </View>
     </SafeAreaView>
-  )
-}
+  );
+};
 
-export default Checkout1
+export default Checkout1;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0a1e30',
+    backgroundColor: "#0a1e30",
   },
   uppertext: {
-    alignItems: 'center',
+    alignItems: "center",
     marginTop: 10,
     marginBottom: 20,
   },
@@ -199,68 +191,68 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   addcontact: {
-    backgroundColor: '#122332',
-    width: '90%',
+    backgroundColor: "#122332",
+    width: "90%",
     height: 59,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     marginVertical: 20,
   },
   addaddress: {
-    flexDirection: 'row',
+    flexDirection: "row",
   },
   butcont: {
     borderWidth: 1,
     marginTop: 20,
-    borderColor: '#FFFFFF',
+    borderColor: "#FFFFFF",
     borderRadius: 30,
-    backgroundColor: '#D33A39',
-    justifyContent: 'center',
+    backgroundColor: "#D33A39",
+    justifyContent: "center",
     height: 50,
   },
   buttext: {
-    color: '#FFFFFF',
-    textAlign: 'center',
+    color: "#FFFFFF",
+    textAlign: "center",
   },
   addresscontent: {
-    backgroundColor: '#122332',
-    width: '90%',
-    justifyContent: 'center',
+    backgroundColor: "#122332",
+    width: "90%",
+    justifyContent: "center",
     height: 180,
     marginVertical: 20,
     paddingTop: 10,
     paddingLeft: 10,
-    shadowColor: 'black',
+    shadowColor: "black",
     shadowOffset: { width: -2, height: 10 },
     shadowOpacity: 0.2,
     shadowRadius: 10,
     elevation: 5,
   },
   topcont: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     paddingEnd: 30,
   },
   top: {
-    flexDirection: 'row',
+    flexDirection: "row",
   },
   name: {
-    flexDirection: 'row',
+    flexDirection: "row",
     marginVertical: 5,
-    alignItems: 'center',
+    alignItems: "center",
   },
   down: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginTop: 15,
   },
   imgcont: {
-    backgroundColor: '#04172A',
+    backgroundColor: "#04172A",
     height: 33,
     width: 31,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   img: {
     height: 24,
@@ -271,8 +263,8 @@ const styles = StyleSheet.create({
     height: 22,
   },
   footerbtn: {
-    alignItems: 'center',
+    alignItems: "center",
     marginBottom: 58,
     marginStart: 13,
   },
-})
+});
