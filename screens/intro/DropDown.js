@@ -168,7 +168,7 @@
 //   },
 // })
 
-import React from 'react'
+import React from "react";
 import {
   View,
   Text,
@@ -178,22 +178,22 @@ import {
   StyleSheet,
   ScrollView,
   Image,
-} from 'react-native'
-const { width } = Dimensions.get('window')
-import { Ionicons, FontAwesome } from '@expo/vector-icons'
+} from "react-native";
+const { width } = Dimensions.get("window");
+import { Ionicons, FontAwesome } from "@expo/vector-icons";
 
-import SelectDropdown from 'react-native-select-dropdown'
+import SelectDropdown from "react-native-select-dropdown";
 
 const SelectDropDown = () => {
   const LanguageWithFlags = [
-    { title: 'Egypt', image: require('../../assets/images/country.png') },
-    { title: 'Canada', image: require('../../assets/images/country.png') },
-    { title: 'Australia', image: require('../../assets/images/country.png') },
-    { title: 'Ireland', image: require('../../assets/images/country.png') },
-    { title: 'Brazil', image: require('../../assets/images/country.png') },
-    { title: 'England', image: require('../../assets/images/country.png') },
-    { title: 'Dubai', image: require('../../assets/images/country.png') },
-  ]
+    { title: "Egypt", image: require("../../assets/images/country.png") },
+    { title: "Canada", image: require("../../assets/images/country.png") },
+    { title: "Australia", image: require("../../assets/images/country.png") },
+    { title: "Ireland", image: require("../../assets/images/country.png") },
+    { title: "Brazil", image: require("../../assets/images/country.png") },
+    { title: "England", image: require("../../assets/images/country.png") },
+    { title: "Dubai", image: require("../../assets/images/country.png") },
+  ];
 
   return (
     <SafeAreaView style={styles.saveAreaViewContainer}>
@@ -201,12 +201,11 @@ const SelectDropDown = () => {
         <ScrollView
           showsVerticalScrollIndicator={false}
           alwaysBounceVertical={false}
-          contentContainerStyle={styles.scrollViewContainer}
-        >
+          contentContainerStyle={styles.scrollViewContainer}>
           <SelectDropdown
             search
             searchInputTxtColor="#ffffff"
-            searchPlaceholder={'Search...'}
+            searchPlaceholder={"Search..."}
             searchInputStyle={styles.searchInput}
             data={LanguageWithFlags}
             //defaultValueByIndex={0}
@@ -229,12 +228,12 @@ const SelectDropDown = () => {
                       />
                     )}
                     <Text style={styles.languageText}>
-                      {selectedItem ? selectedItem.title : 'Language'}
+                      {selectedItem ? selectedItem.title : "Language"}
                     </Text>
                   </View>
-                  <FontAwesome name="chevron-up" color={'#ffffff'} size={18} />
+                  <FontAwesome name="chevron-up" color={"#ffffff"} size={18} />
                 </View>
-              )
+              );
             }}
             dropdownStyle={styles.dropdownStyle}
             rowStyle={styles.dropdownRowStyle}
@@ -244,77 +243,79 @@ const SelectDropDown = () => {
                   <Image source={item.image} style={styles.dropdownRowImage} />
                   <Text style={styles.dropdownRowTxt}>{item.title}</Text>
                 </View>
-              )
+              );
             }}
           />
         </ScrollView>
       </View>
     </SafeAreaView>
-  )
-}
+  );
+};
 
-export default SelectDropDown
+export default SelectDropDown;
 
 const styles = StyleSheet.create({
   saveAreaViewContainer: {},
   viewContainer: { width },
   scrollViewContainer: {
     flexGrow: 1,
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   searchInput: {
-    backgroundColor: '#04172A',
-    height: 70,
+    backgroundColor: "#04172A",
+    height: 60,
+    fontSize: 55,
   },
   dropdowncontainer: {
-    width: '80%',
+    width: "80%",
     height: 58,
-    backgroundColor: '#04172A',
+    backgroundColor: "#04172A",
     borderRadius: 30,
   },
   languagecontent: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     paddingHorizontal: 15,
   },
   leftcontent: {
-    justifyContent: 'space-between',
-    flexDirection: 'row',
+    justifyContent: "space-between",
+    flexDirection: "row",
   },
   languageImage: {
     width: 24,
     height: 24,
   },
   languageText: {
-    color: '#ffffff',
-    textAlign: 'center',
+    color: "#ffffff",
+    textAlign: "center",
     fontSize: 22,
     paddingLeft: 12,
   },
   dropdownStyle: {
-    backgroundColor: '#04172A',
-    borderRadius: 30,
+    backgroundColor: "#04172A",
+    borderRadius: 20,
+    fontWeight: "bold",
   },
   dropdownRowStyle: {
-    backgroundColor: '#04172A',
+    backgroundColor: "#04172A",
     height: 58,
   },
   dropdownRowChildStyle: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     paddingHorizontal: 18,
   },
   dropdownRowImage: {
-    width: 24,
-    height: 24,
-    resizeMode: 'cover',
+    width: 20,
+    height: 20,
+    resizeMode: "cover",
   },
   dropdownRowTxt: {
-    color: '#ffffff',
-    textAlign: 'center',
-    fontSize: 24,
+    color: "#ffffff",
+    textAlign: "center",
+    fontSize: 18,
     marginLeft: 18,
   },
-})
+});

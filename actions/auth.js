@@ -105,19 +105,22 @@ export const resetPassword = (email) => (dispatch) => {
 };
 
 export const confirmOTP = (token, email) => (dispatch) => {
-  dispatch(loading(true));
+  return new Promise((resolve, reject) => {
+    dispatch(loading(true));
 
-  apiRequest(`/otp/verify/${token}`, "POST", { token, email })
-    .then(({ data }) => {
-      Alert.alert("Success", `OTP Confirmed`);
-    })
-    .catch((err) => {
-      console.log("Error =>>>> ");
-      Alert.alert("Error", "Invalid OTP");
-    })
-    .finally(() => {
-      dispatch(loading(false));
-    });
+    apiRequest(`/otp/verify/${token}`, "POST", { token, email })
+      .then(({ data }) => {
+        Alert.alert("Success", `OTP Confirmed`);
+        dispatch(loading(false));
+        resolve(); // Resolve the promise to indicate successful OTP confirmation
+      })
+      .catch((err) => {
+        console.log("Error =>>>> ");
+        Alert.alert("Error", "Invalid OTP");
+        dispatch(loading(false));
+        reject(); // Reject the promise to indicate failure in OTP confirmation
+      });
+  });
 };
 
 export const changePassword =

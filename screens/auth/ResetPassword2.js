@@ -42,10 +42,16 @@ const ResetPassword2 = ({ navigation }) => {
     const enteredOTP = Object.values(otp).join("");
 
     if (enteredOTP.length !== 6) {
-      setErrorText("Invalid OTP");
+      setErrorText("Incomplete OTP");
     } else {
-      dispatch(confirmOTP(enteredOTP, otpToken.otpToken.email));
-      navigation.navigate("ChangePassword");
+      dispatch(confirmOTP(enteredOTP, otpToken.otpToken.email))
+        .then(() => {
+          navigation.navigate("ChangePassword");
+        })
+        .catch(() => {
+          // OTP verification failed, handle error (optional)
+          setErrorText("Invalid OTP");
+        });
     }
   };
 
@@ -210,7 +216,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "700",
     padding: 0,
-    textAlign: "centuuer",
+    textAlign: "center",
     paddingHorizontal: 18,
     paddingVertical: 10,
   },
